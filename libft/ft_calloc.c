@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 12:05:06 by rgelin            #+#    #+#             */
-/*   Updated: 2020/11/20 12:39:57 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/09 18:20:30 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	i;
 
 	i = 0;
-	if (!(tab = malloc(size * count)))
+	tab = malloc(size * count);
+	if (!tab)
 		return (NULL);
 	while (i < count * size)
 		((char *)tab)[i++] = 0;

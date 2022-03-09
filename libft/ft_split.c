@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 21:27:01 by rgelin            #+#    #+#             */
-/*   Updated: 2020/12/02 17:15:51 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/09 18:15:18 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ static char		**fill_tab(char const *str, char c, char **res, int nb_words)
 	while (index < nb_words)
 	{
 		j = 0;
-		if (!(res[index] = malloc(sizeof(char) * (size_word(str, c, i) + 1))))
+		res[index] = malloc(sizeof(char) * (size_word(str, c, i) + 1));
+		if (!res[index])
 			return (malloc_error(res));
 		while (str[i] && str[i] == c)
 			i++;
@@ -97,7 +98,8 @@ char			**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	nb_words = count_words(s, c);
-	if (!(res = malloc(sizeof(char *) * (nb_words + 1))))
+	res = malloc(sizeof(char *) * (nb_words + 1));
+	if (!res)
 		return (NULL);
 	res = fill_tab(s, c, res, nb_words);
 	return (res);

@@ -6,13 +6,13 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 16:54:51 by rgelin            #+#    #+#             */
-/*   Updated: 2021/08/31 16:25:40 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/09 18:32:52 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen_gnl(char *str)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	ft_free(char **str)
+void	ft_free_gnl(char **str)
 {
 	if (!str)
 		return ;
@@ -36,7 +36,7 @@ void	ft_free(char **str)
 	return ;
 }
 
-char	*ft_strdup(char *s1)
+char	*ft_strdup_gnl(char *s1)
 {
 	int		i;
 	char	*res;
@@ -44,7 +44,7 @@ char	*ft_strdup(char *s1)
 	i = 0;
 	if (!s1)
 		return (NULL);
-	res = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	res = malloc(sizeof(char) * (ft_strlen_gnl(s1) + 1));
 	if (!res)
 		return (NULL);
 	while (s1[i])
@@ -56,7 +56,7 @@ char	*ft_strdup(char *s1)
 	return (res);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -66,7 +66,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	str = malloc(sizeof(char) * (ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1));
 	if (!str)
 		return (NULL);
 	while (s1[i])

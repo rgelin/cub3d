@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 14:15:44 by rgelin            #+#    #+#             */
-/*   Updated: 2020/11/23 14:56:36 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/09 18:16:03 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_list		*ft_lstnew(void *content)
 {
 	t_list	*ptr;
 
-	if (!(ptr = malloc(sizeof(t_list))))
+	ptr = malloc(sizeof(t_list));
+	if (!ptr)
 		return (NULL);
 	ptr->content = content;
 	ptr->next = 0;

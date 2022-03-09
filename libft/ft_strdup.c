@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 12:40:25 by rgelin            #+#    #+#             */
-/*   Updated: 2020/11/20 13:16:10 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/09 18:14:01 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@ char	*ft_strdup(const char *s1)
 	char	*res;
 	char	*str;
 
-	i = 0;
+	i = -1;
 	str = (char *)s1;
-	if (!(res = malloc(sizeof(char) * (ft_strlen(s1) + 1))))
+	res = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!res)
 		return (NULL);
-	while (str[i])
-	{
+	while (str[++i])
 		res[i] = str[i];
-		i++;
-	}
 	res[i] = 0;
 	return (res);
 }

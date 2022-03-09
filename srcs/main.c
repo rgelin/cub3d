@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/09 17:17:10 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/09 18:09:02 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	press_red_cross(t_mlx *mlx)
 	// destroy_image(mlx);
 	// mlx_destroy_window(mlx->mlx, mlx->mlx_window);
 	exit(EXIT_SUCCESS);
+}
+
+int	check_map(char *str)
+{
+	
 }
 
 int	main(int ac, char *av[])

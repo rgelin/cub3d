@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 16:54:47 by rgelin            #+#    #+#             */
-/*   Updated: 2021/09/08 14:33:41 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/09 18:32:31 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*ft_copy_line(char *str)
 	i = 0;
 	if (!str)
 		return (NULL);
-	line = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	line = malloc(sizeof(char) * (ft_strlen_gnl(str) + 1));
 	if (!line)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
@@ -61,7 +61,7 @@ static char	*ft_copy_remain(char *str)
 		i++;
 	if (!str[i])
 		return (NULL);
-	remain = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	remain = malloc(sizeof(char) * (ft_strlen_gnl(str) - i + 1));
 	if (!remain)
 		return (NULL);
 	i += 1;
@@ -84,16 +84,16 @@ static char	*ft_returned_value(char **save)
 	{
 		line = ft_copy_line(*save);
 		temp = ft_copy_remain(*save);
-		ft_free(save);
+		ft_free_gnl(save);
 		*save = temp;
 		if ((*save)[0] == '\0')
-			ft_free(save);
+			ft_free_gnl(save);
 		return (line);
 	}
 	else
 	{
-		line = ft_strdup(*save);
-		ft_free(save);
+		line = ft_strdup_gnl(*save);
+		ft_free_gnl(save);
 		return (line);
 	}
 }
@@ -112,11 +112,11 @@ char	*get_next_line(int fd)
 	{
 		buf[ret] = '\0';
 		if (!save)
-			save = ft_strdup(buf);
+			save = ft_strdup_gnl(buf);
 		else
 		{
-			temp = ft_strjoin(save, buf);
-			ft_free(&save);
+			temp = ft_strjoin_gnl(save, buf);
+			ft_free_gnl(&save);
 			save = temp;
 		}
 		if (new_line(buf))

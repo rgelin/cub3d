@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 15:54:07 by rgelin            #+#    #+#             */
-/*   Updated: 2020/12/02 17:29:54 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/09 18:19:25 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,13 @@ static int		size_nb(int nb)
 	return (count);
 }
 
-static char		*ft_putnbr_str(int nb)
+static char		*ft_putnbr_str(int nb, char *res)
 {
 	int		i;
 	long	n;
-	char	*res;
 
 	i = 0;
 	n = nb;
-	if (!(res = malloc(sizeof(char) * size_nb(n) + 1)))
-		return (NULL);
 	if (n < 0)
 	{
 		res[i++] = '-';
@@ -82,8 +79,9 @@ char			*ft_itoa(int nb)
 {
 	char	*res;
 
-	if (!(res = ft_putnbr_str(nb)))
+	if (!(res = malloc(sizeof(char) * size_nb(nb) + 1)))
 		return (NULL);
+	res = ft_putnbr_str(nb, res);
 	if (nb < 0)
 		rev_tab(res, 1);
 	else
