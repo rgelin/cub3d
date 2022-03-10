@@ -6,7 +6,7 @@
 #    By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/19 12:26:15 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/10 03:20:09 by rgelin           ###   ########.fr        #
+#    Updated: 2022/03/10 21:52:33 by rgelin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCS        =       ft_atoi.c \
 					ft_strtrim.c \
 					ft_substr.c \
 					ft_tolower.c \
+					ft_free_tab.c \
 					ft_toupper.c 
 					
 BSRCS		=		ft_lstadd_back.c \
