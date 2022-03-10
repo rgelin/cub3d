@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/10 03:40:00 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/10 04:15:47 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,33 +48,40 @@ int	check_map_format(char *str)
 	return (0);
 }
 
-int	read_file(char *file_path)
+void	read_file(char *file_path, t_data *data)
 {
 	int fd;
-	char *line;
+	int	i;
+	int	nb_line;
 
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
-		return (1);
-	line = get_next_line(fd);
-	while (line)
-	{
-		printf("%s", line);
-		line = get_next_line(fd);
-	}
-	return (0);
-	
+		ft_perror("Error: open file", 1);
+	nb_line = 0;
+	while (get_next_line(fd))
+		nb_line++;
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+		ft_perror("Error: open file", 1);
+	data->data = malloc(sizeof(char *) * (nb_line + 1));
+	if (!data->data)
+		ft_perror("Error: malloc", 1);
+	i = -1;
+	while (++i < nb_line)
+		data->data[i] = get_next_line(fd);
+	data->data[i] = NULL;
 }
 
 int	main(int ac, char *av[])
 {
 	(void)av;
 	t_mlx mlx;
+	t_data data;
 
 	if (ac != 2)
 		return (ft_perror("Error: argument", 1));
 	check_map_format(av[1]);
-	read_file(av[1]);
+	read_file(av[1], &data);
 	mlx.mlx = mlx_init();
 	// mlx.mlx_window = mlx_new_window(mlx.mlx, 800, 800, "cub3d");
 	// mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &mlx);
