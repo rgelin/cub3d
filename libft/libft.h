@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 14:24:50 by rgelin            #+#    #+#             */
-/*   Updated: 2020/11/27 14:35:25 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/10 03:24:53 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "stdlib.h"
 # include "unistd.h"
 # include "string.h"
+# include "./get_next_line/get_next_line.h"
 
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
@@ -51,6 +52,7 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *str, char c);
 char			*ft_itoa(int nb);
+void			ft_rev_tab(char *tab, int neg);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 void			ft_putchar_fd(char c, int fd);

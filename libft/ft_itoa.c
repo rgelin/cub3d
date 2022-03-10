@@ -6,13 +6,13 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 15:54:07 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/09 18:19:25 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/10 03:27:01 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		rev_tab(char *tab, int neg)
+void		ft_rev_tab(char *tab, int neg)
 {
 	int		i;
 	char	t;
@@ -83,8 +83,8 @@ char			*ft_itoa(int nb)
 		return (NULL);
 	res = ft_putnbr_str(nb, res);
 	if (nb < 0)
-		rev_tab(res, 1);
+		ft_rev_tab(res, 1);
 	else
-		rev_tab(res, 0);
+		ft_rev_tab(res, 0);
 	return (res);
 }
