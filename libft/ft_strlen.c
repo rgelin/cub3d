@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 18:20:31 by rgelin            #+#    #+#             */
-/*   Updated: 2020/11/18 18:57:51 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/11 03:18:58 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 	char	*str;
 
+	if (!s)
+		return (0);
 	str = (char *)s;
 	i = 0;
 	while (str[i])

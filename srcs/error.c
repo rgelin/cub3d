@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 03:05:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/10 18:56:06 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/11 04:26:38 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@ int	ft_perror(char *msg)
 
 void	ft_free(t_data *data)
 {
-	int i;
-	
-	i = -1;
-	while (data->data && data->data[++i])
-		free(data->data[i]);
-	if (data->data)
-		free(data->data);
+	if (data)
+	{
+		free(data->NO_texture_path);
+		free(data->SO_texture_path);
+		free(data->WE_texture_path);
+		free(data->EA_texture_path);
+		free(data->roof_color);
+		free(data->floor_color);
+		ft_free_tab(data->map);
+	}
 }
 
 void	check_map_format(char *str)

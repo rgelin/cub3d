@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/11 00:04:36 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/11 17:32:23 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,73 @@ int	press_red_cross(t_data *data)
 	exit(EXIT_SUCCESS);
 }
 
-void	read_file(char *file_path, t_data *data)
+int		count_line_file(char *file_path)
 {
-	int fd1;
-	int	fd2;
-	int	i;
+	int	fd;
 	int	nb_line;
-
-	fd1 = open(file_path, O_RDONLY);
-	fd2 = open(file_path, O_RDONLY);
-	if (fd1 == -1 || fd2 == -1)
+	char *line;
+	
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
 		ft_perror("Error: open file");
 	nb_line = 0;
-	while (get_next_line(fd1))
+	line = get_next_line(fd);
+	if (line)
 		nb_line++;
-	data->map = malloc(sizeof(char *) * (nb_line));
-	data->data = malloc(sizeof(char *) * (nb_line + 1));
-	if (!data->data || !data->map)
+	while (line)
+	{
+		nb_line++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	close(fd);
+	return (nb_line);
+}
+
+void	read_file(char *file_path, t_data *data)
+{
+	int fd;
+	int	i;
+	int	j;
+	char	*line;
+
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+		ft_perror("Error: open file");
+	data->map = malloc(sizeof(char *) * (count_line_file(file_path)));
+	if (!data->map)
 		ft_perror("Error: malloc");
 	i = -1;
-	while (++i < nb_line)
-		data->data[i] = get_next_line(fd2);
-	data->data[++i] = NULL;
-	close(fd1);
-	close(fd2);
+	j = -1;
+	while (++i < count_line_file(file_path) + 1)
+	{
+		line = get_next_line(fd);
+		printf("line[%d] %s\n", i, line);
+		if (ft_strlen(line) == 0)
+			i++;
+		else if (!ft_strncmp(line, "NO ", 3))
+			data->NO_texture_path = ft_strdup(line);
+		else if (!ft_strncmp(line, "SO ", 3))
+			data->SO_texture_path = ft_strdup(line);
+		else if (!ft_strncmp(line, "WE ", 3))
+			data->WE_texture_path = ft_strdup(line);
+		else if (!ft_strncmp(line, "EA ", 3))
+			data->EA_texture_path = ft_strdup(line);
+		else if (!ft_strncmp(line, "F ", 2))
+			data->floor_color = ft_strdup(line);
+		else if (!ft_strncmp(line, "C ", 2))
+			data->roof_color = ft_strdup(line);
+		else
+			data->map[++j] = ft_strdup(line);
+		free(line);
+		
+	}
+	data->map[++j] = NULL;
+	i = -1;
+	while (data && data->map[++i])
+		printf("%s\n", data->map[i]);
+	close(fd);
 }
 
 void split_data(t_data *data)
@@ -49,25 +92,39 @@ void split_data(t_data *data)
 	char **split;
 
 	split = ft_split(data->NO_texture_path, ' ');
-	data->NO_texture_path = split[1];
-	free(split[0]);
-	// ft_free_tab(split);
+	free(data->NO_texture_path);
+	data->NO_texture_path = ft_strdup(split[1]);
+	ft_free_tab(split);
+	
 	split = ft_split(data->SO_texture_path, ' ');
-	data->SO_texture_path = split[1];
-	free(split[0]);
-	// ft_free_tab(split);
+	free(data->SO_texture_path);
+	data->SO_texture_path = ft_strdup(split[1]);
+	ft_free_tab(split);
+	
 	split = ft_split(data->WE_texture_path, ' ');
-	data->WE_texture_path = split[1];
-	free(split[0]);
-	// ft_free_tab(split);
+	free(data->WE_texture_path);
+	data->WE_texture_path = ft_strdup(split[1]);
+	ft_free_tab(split);
+	
 	split = ft_split(data->EA_texture_path, ' ');
-	data->EA_texture_path = split[1];
-	free(split[0]);
+	free(data->EA_texture_path);
+	data->EA_texture_path = ft_strdup(split[1]);
+	ft_free_tab(split);
+	split = ft_split(data->floor_color , ' ');
+	free(data->floor_color);
+	data->floor_color = ft_strdup(split[1]);
+	ft_free_tab(split);
+	split = ft_split(data->roof_color, ' ');
+	free(data->roof_color);
+	data->roof_color = ft_strdup(split[1]);
+	ft_free_tab(split);
 	// ft_free_tab(split);
 	printf("%s\n", data->NO_texture_path);
 	printf("%s\n", data->SO_texture_path);
 	printf("%s\n", data->WE_texture_path);
 	printf("%s\n", data->EA_texture_path);
+	printf("%s\n", data->roof_color);
+	printf("%s\n", data->floor_color);
 }
 
 int	check_data(t_data *data)
@@ -75,6 +132,9 @@ int	check_data(t_data *data)
 	int	i;
 	int	j;
 	
+	// i = -1;
+	// while (data && data->data[++i])
+	// 	printf("%s\n", data->data[i]);
 	if (!data->NO_texture_path || !data->SO_texture_path || !data->WE_texture_path
 		|| ! data->EA_texture_path || !data->floor_color || !data->roof_color)
 		return (1);
@@ -89,57 +149,27 @@ int	check_data(t_data *data)
 				return (1);			
 		}
 	}
-	i = -1;
-	while (data && data->map[++i])
-		printf("%s\n", data->map[i]);
 	return (0);
-}
-
-void	ft_parse_data(t_data *data)
-{
-	int i;
-	int	j;
-
-	i = 0;
-	j = -1;
-	while (data->data[i])
-	{
-		if (ft_strlen(data->data[i]) == 0)
-			i++;
-		else if (!ft_strncmp(data->data[i], "NO ", 3))
-			data->NO_texture_path = data->data[i++];
-		else if (!ft_strncmp(data->data[i], "SO ", 3))
-			data->SO_texture_path = data->data[i++];
-		else if (!ft_strncmp(data->data[i], "WE ", 3))
-			data->WE_texture_path = data->data[i++];
-		else if (!ft_strncmp(data->data[i], "EA ", 3))
-			data->EA_texture_path = data->data[i++];
-		else if (!ft_strncmp(data->data[i], "F ", 2))
-			data->floor_color = data->data[i++];
-		else if (!ft_strncmp(data->data[i], "C ", 2))
-			data->roof_color = data->data[i++];
-		else
-			data->map[++j] = data->data[i++];
-	}
-	data->map[++j] = NULL;
 }
 
 int	main(int ac, char *av[])
 {
-	(void)av;
 	t_data data;
 
 	if (ac != 2)
 		return (ft_perror("Error: argument"));
 	check_map_format(av[1]);
 	read_file(av[1], &data);
-	ft_parse_data(&data);
 	if (check_data(&data))
 		return (ft_perror("Error: operation file corrupted"));
-	data.mlx = mlx_init();
+	split_data(&data);
+	// data.mlx = mlx_init();
 	// mlx.mlx_window = mlx_new_window(mlx.mlx, 800, 800, "cub3d");
 	// mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &mlx);
 	// mlx_loop(mlx.mlx);
-	// system("leaks cub3d");
-	exit(EXIT_SUCCESS);
+	// ft_free_tab(data.map);
+	ft_free(&data);
+	system("leaks cub3d");
+	// exit(EXIT_SUCCESS);
+	return (0);
 }
