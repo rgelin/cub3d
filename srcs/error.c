@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 03:05:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/11 04:26:38 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/11 21:28:47 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	ft_perror(char *msg)
 {
-	printf("%s\n", msg);
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
 	exit(EXIT_FAILURE);
 }
 

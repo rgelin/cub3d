@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 12:40:25 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/09 18:14:01 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/11 21:19:11 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ char	*ft_strdup(const char *s1)
 		return (NULL);
 	while (str[++i])
 		res[i] = str[i];
-	res[i] = 0;
+	res[i] = '\0';
 	return (res);
 }

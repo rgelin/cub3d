@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/11 17:32:23 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/11 21:30:22 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,12 @@ void	read_file(char *file_path, t_data *data)
 	while (++i < count_line_file(file_path) + 1)
 	{
 		line = get_next_line(fd);
-		printf("line[%d] %s\n", i, line);
 		if (ft_strlen(line) == 0)
 			i++;
 		else if (!ft_strncmp(line, "NO ", 3))
 			data->NO_texture_path = ft_strdup(line);
 		else if (!ft_strncmp(line, "SO ", 3))
-			data->SO_texture_path = ft_strdup(line);
+			data->SO_texture_path = ft_strdup(line); //leak ???? Pq ? Aucun sens
 		else if (!ft_strncmp(line, "WE ", 3))
 			data->WE_texture_path = ft_strdup(line);
 		else if (!ft_strncmp(line, "EA ", 3))
@@ -82,42 +81,32 @@ void	read_file(char *file_path, t_data *data)
 	}
 	data->map[++j] = NULL;
 	i = -1;
-	while (data && data->map[++i])
+	while (data->map && data->map[++i])
 		printf("%s\n", data->map[i]);
 	close(fd);
 }
 
-void split_data(t_data *data)
+void	get_split_data(char **str)
 {
 	char **split;
 
-	split = ft_split(data->NO_texture_path, ' ');
-	free(data->NO_texture_path);
-	data->NO_texture_path = ft_strdup(split[1]);
+	split = ft_split(*str, ' ');
+	if (!split)
+		ft_perror("Error: malloc");
+	free(*str);
+	*str = ft_strdup(split[1]);
 	ft_free_tab(split);
 	
-	split = ft_split(data->SO_texture_path, ' ');
-	free(data->SO_texture_path);
-	data->SO_texture_path = ft_strdup(split[1]);
-	ft_free_tab(split);
-	
-	split = ft_split(data->WE_texture_path, ' ');
-	free(data->WE_texture_path);
-	data->WE_texture_path = ft_strdup(split[1]);
-	ft_free_tab(split);
-	
-	split = ft_split(data->EA_texture_path, ' ');
-	free(data->EA_texture_path);
-	data->EA_texture_path = ft_strdup(split[1]);
-	ft_free_tab(split);
-	split = ft_split(data->floor_color , ' ');
-	free(data->floor_color);
-	data->floor_color = ft_strdup(split[1]);
-	ft_free_tab(split);
-	split = ft_split(data->roof_color, ' ');
-	free(data->roof_color);
-	data->roof_color = ft_strdup(split[1]);
-	ft_free_tab(split);
+}
+
+void split_data(t_data *data)
+{
+	get_split_data(&data->NO_texture_path);
+	get_split_data(&data->SO_texture_path);
+	get_split_data(&data->WE_texture_path);
+	get_split_data(&data->EA_texture_path);
+	get_split_data(&data->roof_color);
+	get_split_data(&data->floor_color);
 	// ft_free_tab(split);
 	printf("%s\n", data->NO_texture_path);
 	printf("%s\n", data->SO_texture_path);
@@ -132,9 +121,6 @@ int	check_data(t_data *data)
 	int	i;
 	int	j;
 	
-	// i = -1;
-	// while (data && data->data[++i])
-	// 	printf("%s\n", data->data[i]);
 	if (!data->NO_texture_path || !data->SO_texture_path || !data->WE_texture_path
 		|| ! data->EA_texture_path || !data->floor_color || !data->roof_color)
 		return (1);
@@ -152,13 +138,25 @@ int	check_data(t_data *data)
 	return (0);
 }
 
+void init_struct(t_data *data)
+{
+	data->NO_texture_path = NULL;
+	data->SO_texture_path = NULL;
+	data->WE_texture_path = NULL;
+	data->EA_texture_path = NULL;
+	data->floor_color = NULL;
+	data->roof_color = NULL;
+}
+
 int	main(int ac, char *av[])
 {
 	t_data data;
 
 	if (ac != 2)
 		return (ft_perror("Error: argument"));
+	data.file_path = av[1];
 	check_map_format(av[1]);
+	init_struct(&data);
 	read_file(av[1], &data);
 	if (check_data(&data))
 		return (ft_perror("Error: operation file corrupted"));
@@ -168,8 +166,7 @@ int	main(int ac, char *av[])
 	// mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &mlx);
 	// mlx_loop(mlx.mlx);
 	// ft_free_tab(data.map);
-	ft_free(&data);
+	// ft_free(&data);
 	system("leaks cub3d");
-	// exit(EXIT_SUCCESS);
 	return (0);
 }

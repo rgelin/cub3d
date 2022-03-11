@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/10 19:02:15 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/11 21:16:08 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef struct	s_data
 	void	*mlx_window;
 	int		screen_width;
 	int		screen_heigth;
-	char	**data;
+	
+	char	*file_path;
 	char	**map;
 	char	*NO_texture_path;
 	char	*SO_texture_path;
