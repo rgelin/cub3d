@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/12 04:51:04 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/12 17:47:31 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	main(int ac, char *av[])
 	// mlx_loop(mlx.mlx);
 	// ft_free_tab(data.map);
 	ft_free(&data);
-	system("leaks cub3d");
+	// system("leaks cub3d");
 	return (0);
 }

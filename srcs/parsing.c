@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 04:39:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/12 05:13:47 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/12 17:38:09 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ void	read_file(char *file_path, t_data *data)
 	}
 	data->map[++j] = NULL;
 	// printf("%s\n", data->NO_texture_path);
-	i = -1;
-	while (data->map[++i])
-		printf("%s\n", data->map[i]);
+	// i = -1;
+	// while (data->map[++i])
+	// 	printf("%s\n", data->map[i]);
 	close(fd);
 }
 
