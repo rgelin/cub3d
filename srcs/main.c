@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/11 21:30:22 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/12 04:22:51 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,36 @@ void	get_split_data(char **str)
 	if (!split)
 		ft_perror("Error: malloc");
 	free(*str);
+	*str = NULL;
 	*str = ft_strdup(split[1]);
 	ft_free_tab(split);
 	
+}
+
+void	check_color(char *color)
+{
+	char	**split_color;
+	int		i;
+	int		j;
+
+	split_color = ft_split(color, ',');
+	if (!split_color)
+		ft_perror("Error: malloc");
+	if (ft_tabsize(split_color) != 3)
+		ft_perror("Error: operation file corrupted");
+	i = -1;
+	while (split_color[++i])
+	{
+		j = -1;
+		while (split_color[i][++j])
+		{
+			if (!ft_isdigit(split_color[i][j]))
+				ft_perror("Error: operation file corrupted");
+		}
+		if (ft_atoi(split_color[i]) < 0 || ft_atoi(split_color[i]) > 255)
+			ft_perror("Error: operation file corrupted");
+	}
+	ft_free_tab(split_color);
 }
 
 void split_data(t_data *data)
@@ -105,8 +132,12 @@ void split_data(t_data *data)
 	get_split_data(&data->SO_texture_path);
 	get_split_data(&data->WE_texture_path);
 	get_split_data(&data->EA_texture_path);
+	printf("%s\n", data->roof_color);
+	printf("%s\n", data->floor_color);
 	get_split_data(&data->roof_color);
 	get_split_data(&data->floor_color);
+	check_color(data->roof_color);
+	check_color(data->floor_color);
 	// ft_free_tab(split);
 	printf("%s\n", data->NO_texture_path);
 	printf("%s\n", data->SO_texture_path);
@@ -166,7 +197,7 @@ int	main(int ac, char *av[])
 	// mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &mlx);
 	// mlx_loop(mlx.mlx);
 	// ft_free_tab(data.map);
-	// ft_free(&data);
+	ft_free(&data);
 	system("leaks cub3d");
 	return (0);
 }
