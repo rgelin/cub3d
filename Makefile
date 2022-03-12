@@ -6,7 +6,7 @@
 #    By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 17:26:54 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/11 03:23:12 by rgelin           ###   ########.fr        #
+#    Updated: 2022/03/12 04:44:29 by rgelin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ MLX_FLAGS	=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
 SRCS		=	$(SOURCES)main.c \
 				$(SOURCES)error.c \
+				$(SOURCES)parsing.c \
 				
 
 SRCS_UTILS	=	

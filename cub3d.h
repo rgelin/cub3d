@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/11 21:16:08 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/12 04:44:07 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,13 @@ typedef struct	s_data
 int		ft_perror(char *msg);
 void	ft_free(t_data *data);
 void	check_map_format(char *str);
+int		check_data(t_data *data);
+void	check_color(char *color);
+
+//============PARSING============//
+
+int		count_line_file(char *file_path);
+void	read_file(char *file_path, t_data *data);
+void	get_split_data(char **str);
+void	split_data(t_data *data);
 

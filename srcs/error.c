@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 03:05:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/11 21:28:47 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/12 04:41:59 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,13 @@ int	ft_perror(char *msg)
 
 void	ft_free(t_data *data)
 {
-	if (data)
-	{
-		free(data->NO_texture_path);
-		free(data->SO_texture_path);
-		free(data->WE_texture_path);
-		free(data->EA_texture_path);
-		free(data->roof_color);
-		free(data->floor_color);
-		ft_free_tab(data->map);
-	}
+	free(data->NO_texture_path);
+	free(data->SO_texture_path);
+	free(data->WE_texture_path);
+	free(data->EA_texture_path);
+	free(data->roof_color);
+	free(data->floor_color);
+	ft_free_tab(data->map);
 }
 
 void	check_map_format(char *str)
@@ -53,3 +50,50 @@ void	check_map_format(char *str)
 	free(to_check);
 }
 
+void	check_color(char *color)
+{
+	char	**split_color;
+	int		i;
+	int		j;
+
+	split_color = ft_split(color, ',');
+	if (!split_color)
+		ft_perror("Error: malloc");
+	if (ft_tabsize(split_color) != 3)
+		ft_perror("Error: operation file corrupted");
+	i = -1;
+	while (split_color[++i])
+	{
+		j = -1;
+		while (split_color[i][++j])
+		{
+			if (!ft_isdigit(split_color[i][j]))
+				ft_perror("Error: operation file corrupted");
+		}
+		if (ft_atoi(split_color[i]) < 0 || ft_atoi(split_color[i]) > 255)
+			ft_perror("Error: operation file corrupted");
+	}
+	ft_free_tab(split_color);
+}
+
+int	check_data(t_data *data)
+{
+	int	i;
+	int	j;
+	
+	if (!data->NO_texture_path || !data->SO_texture_path || !data->WE_texture_path
+		|| ! data->EA_texture_path || !data->floor_color || !data->roof_color)
+		return (1);
+	i = -1;
+	while (data && data->map[++i])
+	{
+		j = -1;
+		while (data->map[i][++j])
+		{
+			if (data->map[i][j] != ' ' && data->map[i][j] != '0' && data->map[i][j] != '1' && data->map[i][j] != 'N'
+				&& data->map[i][j] != 'S' && data->map[i][j] != 'W' && data->map[i][j] != 'E')
+				return (1);			
+		}
+	}
+	return (0);
+}
