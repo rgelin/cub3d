@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+         #
+#    By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 17:26:54 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/12 04:44:29 by rgelin           ###   ########.fr        #
+#    Updated: 2022/03/14 11:12:57 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SOURCES		=	./srcs/
 
 CC			=	gcc
 FLAGS		=	-Wall -Werror -Wextra
-MLX_FLAGS	=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS	=	-lmlx -framework OpenGL -framework AppKit
 
 #-------------------SOURCES FILES----------------------
 
@@ -65,7 +65,7 @@ $(NAME):	$(OBJS) $(OBJS_UTILS)
 			@make -C minilibx
 			@cp ./minilibx/libmlx.dylib ./
 			@echo "$(GREEN)\nCompiling cub3d...$(NO_COLOR)"
-			@$(CC) $(FLAGS) $(MLX_FLAGS) $(OBJS) $(OBJS_UTILS) $(LIB_MLX) -o $(NAME)
+			@$(CC) $(FLAGS) $(MLX_FLAGS) $(OBJS) $(OBJS_UTILS) $(LIB_MLX) -L./libft -lft -o $(NAME)
 			@echo "\nEnjoy!"
 
 all:	$(NAME)
