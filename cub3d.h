@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/12 04:44:07 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/14 12:57:51 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 #include <math.h>
 #include "./minilibx/mlx.h"
 #include "./libft/libft.h"
+
+typedef struct s_pos
+{
+	double	x;
+	double	y;
+}				t_pos;
 
 typedef struct	s_data
 {
@@ -50,3 +56,6 @@ void	read_file(char *file_path, t_data *data);
 void	get_split_data(char **str);
 void	split_data(t_data *data);
 
+//============PARSING============//
+
+t_pos	ft_get_pos_player(char **map);
