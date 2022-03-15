@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/14 12:57:51 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/15 15:39:05 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ typedef struct s_pos
 	double	y;
 }				t_pos;
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	int		*data;
+	int		size_l;
+	int		bpp;
+	int		endian;
+}				t_img;
+
 typedef struct	s_data
 {
 	void	*mlx;
@@ -39,6 +48,7 @@ typedef struct	s_data
 	char	*EA_texture_path;
 	char	*floor_color;
 	char	*roof_color;
+	t_img	img;
 }	t_data;
 
 //============ERRORS============//
