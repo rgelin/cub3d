@@ -6,7 +6,7 @@
 #    By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 17:26:54 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/14 14:48:00 by jvander-         ###   ########.fr        #
+#    Updated: 2022/03/16 11:39:57 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ MLX_FLAGS	=	-lmlx -framework OpenGL -framework AppKit
 SRCS		=	$(SOURCES)main.c \
 				$(SOURCES)error.c \
 				$(SOURCES)parsing.c \
-				$(SOURCES)raytracking.c \
 				
 
 SRCS_UTILS	=	$(UTILS)get_pos_player.c \
