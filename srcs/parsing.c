@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 04:39:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/16 17:09:27 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/16 17:30:45 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,6 @@ int	count_line_file(char *file_path)
 	return (nb_line);
 }
 
-void	dispatch_data(t_data **data, char *line, int j)
-{
-	
-	// printf("%s\n", line);
-	// printf("%d\n", j);
-	if (!(*data)->NO_texture_path && !ft_strncmp(line, "NO ", 3))
-		(*data)->NO_texture_path = ft_strdup(line);
-	else if (!(*data)->SO_texture_path && !ft_strncmp(line, "SO ", 3))
-		(*data)->SO_texture_path = ft_strdup(line);
-	else if (!(*data)->WE_texture_path && !ft_strncmp(line, "WE ", 3))
-		(*data)->WE_texture_path = ft_strdup(line);
-	else if (!(*data)->EA_texture_path && !ft_strncmp(line, "EA ", 3))
-		(*data)->EA_texture_path = ft_strdup(line);
-	else if (!(*data)->floor_color && !ft_strncmp(line, "F ", 2))
-		(*data)->floor_color = ft_strdup(line);
-	else if (!(*data)->roof_color && !ft_strncmp(line, "C ", 2))
-		(*data)->roof_color = ft_strdup(line);
-	else
-		(*data)->map[j] = ft_strdup(line);
-	// printf("%s\n", data->map[j]);
-}
-
 int	check_if_all_info(t_data *data)
 {
 	if (data->EA_texture_path && data->NO_texture_path && data->SO_texture_path
@@ -74,9 +52,9 @@ void	parse_data(t_data *data, char **file_content)
 
 	i = 0;
 	j = 0;
-	while (!check_if_all_info(data))
+	while (file_content && file_content[i] && !check_if_all_info(data))
 	{
-		if (file_content[i] && ft_strlen(file_content[i]) == 0)
+		if (ft_strlen(file_content[i]) == 0)
 			i++;
 		else
 		{
@@ -92,6 +70,8 @@ void	parse_data(t_data *data, char **file_content)
 				data->floor_color = ft_strdup(file_content[i]);
 			else if (!data->roof_color && !ft_strncmp(file_content[i], "C ", 2))
 				data->roof_color = ft_strdup(file_content[i]);
+			else
+				data->map[j++] = ft_strdup(file_content[i]);
 			i++;
 		}
 	}
@@ -127,9 +107,9 @@ void	read_file(char *file_path, t_data *data)
 	file_content[i] = NULL;
 	parse_data(data, file_content);
 	ft_free_tab(file_content);
-	i = -1;
-	while (data->map[++i])
-		printf("%s\n", data->map[i]);
+	// i = -1;
+	// while (data->map[++i])
+	// 	printf("%s\n", data->map[i]);
 	close(fd);
 }
 

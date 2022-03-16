@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 03:05:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/16 17:08:40 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/16 17:16:29 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_perror(char *msg)
 {
 	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
+	// system("leaks cub3d");
 	exit(EXIT_FAILURE);
 }
 
