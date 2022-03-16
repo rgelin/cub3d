@@ -6,7 +6,7 @@
 #    By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 17:26:54 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/12 04:44:29 by rgelin           ###   ########.fr        #
+#    Updated: 2022/03/15 16:55:04 by rgelin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,8 @@ MLX_FLAGS	=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 #-------------------SOURCES FILES----------------------
 
 SRCS		=	$(SOURCES)main.c \
-				$(SOURCES)error.c \
 				$(SOURCES)parsing.c \
-				
+				$(SOURCES)error.c 
 
 SRCS_UTILS	=	
 
@@ -60,12 +59,12 @@ NO_COLOR	=	\x1b[0m
 
 $(NAME):	$(OBJS) $(OBJS_UTILS)
 			@echo "\n"
-			@echo "$(GREEN)\nCompiling minilibx...$(NO_COLOR)"
-			@make -C libft
+			@make -C ./libft
+			@echo "$(GREEN)\nCompiling mlx...\n$(NO_COLOR)"
 			@make -C minilibx
 			@cp ./minilibx/libmlx.dylib ./
 			@echo "$(GREEN)\nCompiling cub3d...$(NO_COLOR)"
-			@$(CC) $(FLAGS) $(MLX_FLAGS) $(OBJS) $(OBJS_UTILS) $(LIB_MLX) -o $(NAME)
+			@$(CC) $(FLAGS) $(MLX_FLAGS) $(OBJS) $(OBJS_UTILS) $(LIB_MLX) $(LIBFT) -o $(NAME)
 			@echo "\nEnjoy!"
 
 all:	$(NAME)
@@ -74,7 +73,7 @@ bonus:	$(NAME)
 
 clean:
 		@echo "$(RED)Deleting objects...\n$(NO_COLOR)"
-		@make clean -C libft
+		@make clean -C ./libft
 		@make clean -C minilibx
 		@rm -f $(OBJS) $(OBJS_UTILS)
 

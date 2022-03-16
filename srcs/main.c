@@ -6,20 +6,21 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/12 17:47:31 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/16 16:34:22 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	press_red_cross(t_data *data)
+int	press_red_cross(t_mlx *mlx)
 {
-	ft_free(data);
+	ft_free(mlx->data);
+	// system("leaks cub3d");
 	exit(EXIT_SUCCESS);
 }
 
 
-void init_struct(t_data *data)
+void init_struct(t_data *data, t_mlx *mlx)
 {
 	data->NO_texture_path = NULL;
 	data->SO_texture_path = NULL;
@@ -27,23 +28,27 @@ void init_struct(t_data *data)
 	data->EA_texture_path = NULL;
 	data->floor_color = NULL;
 	data->roof_color = NULL;
+
+	mlx->data = data;
+	mlx->screen_heigth = 1080;
+	mlx->screen_width = 1080;
 }
 
 int	main(int ac, char *av[])
 {
-	t_data data;
+	t_data	data;
+	t_mlx	mlx;
 
 	if (ac != 2)
 		return (ft_perror("Error: argument"));
-	data.file_path = av[1];
 	check_map_format(av[1]);
-	init_struct(&data);
+	init_struct(&data, &mlx);
 	read_file(av[1], &data);
 	if (check_data(&data))
 		return (ft_perror("Error: operation file corrupted"));
 	split_data(&data);
-	// data.mlx = mlx_init();
-	// mlx.mlx_window = mlx_new_window(mlx.mlx, 800, 800, "cub3d");
+	// mlx.mlx = mlx_init();
+	// mlx.mlx_window = mlx_new_window(mlx.mlx, mlx.screen_width, mlx.screen_heigth, "cub3d");
 	// mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &mlx);
 	// mlx_loop(mlx.mlx);
 	// ft_free_tab(data.map);

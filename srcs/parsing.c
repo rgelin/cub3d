@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 04:39:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/12 17:38:09 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/16 17:09:27 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,56 +58,78 @@ void	dispatch_data(t_data **data, char *line, int j)
 	// printf("%s\n", data->map[j]);
 }
 
+int	check_if_all_info(t_data *data)
+{
+	if (data->EA_texture_path && data->NO_texture_path && data->SO_texture_path
+		&& data->WE_texture_path && data->floor_color && data->roof_color)
+		return (1);
+	else
+		return (0);
+}
+
+void	parse_data(t_data *data, char **file_content)
+{
+	int i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (!check_if_all_info(data))
+	{
+		if (file_content[i] && ft_strlen(file_content[i]) == 0)
+			i++;
+		else
+		{
+			if (!data->NO_texture_path && !ft_strncmp(file_content[i], "NO ", 3))
+				data->NO_texture_path = ft_strdup(file_content[i]);
+			else if (!data->SO_texture_path && !ft_strncmp(file_content[i], "SO ", 3))
+				data->SO_texture_path = ft_strdup(file_content[i]);
+			else if (!data->WE_texture_path && !ft_strncmp(file_content[i], "WE ", 3))
+				data->WE_texture_path = ft_strdup(file_content[i]);
+			else if (!data->EA_texture_path && !ft_strncmp(file_content[i], "EA ", 3))
+				data->EA_texture_path = ft_strdup(file_content[i]);
+			else if (!data->floor_color && !ft_strncmp(file_content[i], "F ", 2))
+				data->floor_color = ft_strdup(file_content[i]);
+			else if (!data->roof_color && !ft_strncmp(file_content[i], "C ", 2))
+				data->roof_color = ft_strdup(file_content[i]);
+			i++;
+		}
+	}
+	while (file_content[i] && ft_strlen(file_content[i]) == 0)
+		i++;
+	while (file_content[i])
+		data->map[j++] = ft_strdup(file_content[i++]);
+	data->map[j] = NULL;
+}
+
 void	read_file(char *file_path, t_data *data)
 {
 	int fd;
 	int	i;
-	int	j;
+	char	**file_content;
 	char	*line;
 
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		ft_perror("Error: open file");
+	file_content = malloc(sizeof(char *) * (count_line_file(file_path) + 1));
 	data->map = malloc(sizeof(char *) * (count_line_file(file_path)));
-	if (!data->map)
+	if (!file_content || !data->map)
 		ft_perror("Error: malloc");
 	i = 0;
-	j = -1;
-	while (i < count_line_file(file_path) + 1)
+	while (i < count_line_file(file_path))
 	{
 		line = get_next_line(fd);
-		if (ft_strlen(line) == 0)
-			i++;
-		else
-		{
-			// dispatch_data(&data, line, j);
-			// i++;
-			// j++;
-			if (!data->NO_texture_path && !ft_strncmp(line, "NO ", 3))
-				data->NO_texture_path = ft_strdup(line);
-			else if (!data->SO_texture_path && !ft_strncmp(line, "SO ", 3))
-				data->SO_texture_path = ft_strdup(line);
-			else if (!data->WE_texture_path && !ft_strncmp(line, "WE ", 3))
-				data->WE_texture_path = ft_strdup(line);
-			else if (!data->EA_texture_path && !ft_strncmp(line, "EA ", 3))
-				data->EA_texture_path = ft_strdup(line);
-			else if (!data->floor_color && !ft_strncmp(line, "F ", 2))
-				data->floor_color = ft_strdup(line);
-			else if (!data->roof_color && !ft_strncmp(line, "C ", 2))
-				data->roof_color = ft_strdup(line);
-			else
-				data->map[++j] = ft_strdup(line);
-			i++;
-		}
-	
+		file_content[i] = ft_strdup(line);
+		i++;
 		free(line);
-		
 	}
-	data->map[++j] = NULL;
-	// printf("%s\n", data->NO_texture_path);
-	// i = -1;
-	// while (data->map[++i])
-	// 	printf("%s\n", data->map[i]);
+	file_content[i] = NULL;
+	parse_data(data, file_content);
+	ft_free_tab(file_content);
+	i = -1;
+	while (data->map[++i])
+		printf("%s\n", data->map[i]);
 	close(fd);
 }
 

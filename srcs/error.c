@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 03:05:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/12 04:41:59 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/16 17:08:40 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int	check_data(t_data *data)
 	while (data && data->map[++i])
 	{
 		j = -1;
+		if (data->map[i] && ft_strlen(data->map[i]) == 0)
+			return (1);
 		while (data->map[i][++j])
 		{
 			if (data->map[i][j] != ' ' && data->map[i][j] != '0' && data->map[i][j] != '1' && data->map[i][j] != 'N'
