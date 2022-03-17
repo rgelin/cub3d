@@ -6,7 +6,7 @@
 #    By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 17:26:54 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/17 11:38:52 by jvander-         ###   ########.fr        #
+#    Updated: 2022/03/17 11:40:16 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,11 +64,7 @@ $(NAME):	$(OBJS) $(OBJS_UTILS)
 			@make -C minilibx
 			@cp ./minilibx/libmlx.dylib ./
 			@echo "$(GREEN)\nCompiling cub3d...$(NO_COLOR)"
-<<<<<<< HEAD
 			@$(CC) $(FLAGS) $(MLX_FLAGS) $(OBJS) $(OBJS_UTILS) $(LIB_MLX) $(LIBFT) -o $(NAME)
-=======
-			@$(CC) $(FLAGS) $(MLX_FLAGS) $(OBJS) $(OBJS_UTILS) $(LIB_MLX) -L./libft -lft -o $(NAME)
->>>>>>> d5527f3c97395014ffb28c6cfe7325696177d28c
 			@echo "\nEnjoy!"
 
 all:	$(NAME)
