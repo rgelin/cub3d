@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/16 17:16:26 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/17 11:32:23 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	main(int ac, char *av[])
 	if (check_data(&data))
 		return (ft_perror("Error: operation file corrupted"));
 	split_data(&data);
-	// mlx.mlx = mlx_init();
-	// mlx.mlx_window = mlx_new_window(mlx.mlx, mlx.screen_width, mlx.screen_heigth, "cub3d");
-	// mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &mlx);
-	// mlx_loop(mlx.mlx);
+	mlx.mlx = mlx_init();
+	mlx.mlx_window = mlx_new_window(mlx.mlx, mlx.screen_width, mlx.screen_heigth, "cub3d");
+	mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &mlx);
+	mlx_loop(mlx.mlx);
 	// ft_free_tab(data.map);
 	ft_free(&data);
 	// system("leaks cub3d");
