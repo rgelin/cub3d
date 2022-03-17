@@ -6,11 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/03/17 11:32:23 by jvander-         ###   ########.fr       */
-=======
-/*   Updated: 2022/03/16 13:35:19 by jvander-         ###   ########.fr       */
->>>>>>> d5527f3c97395014ffb28c6cfe7325696177d28c
+/*   Updated: 2022/03/17 11:42:59 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +69,6 @@ int	main(int ac, char *av[])
 {
 	t_mlx	mlx;
 	t_data data;
-	t_pos	pos_player;
 
 	if (ac != 2)
 		return (ft_perror("Error: argument"));
@@ -86,6 +81,7 @@ int	main(int ac, char *av[])
 	mlx.mlx = mlx_init();
 	mlx.mlx_window = mlx_new_window(mlx.mlx, mlx.screen_width, mlx.screen_heigth, "cub3d");
 	mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &mlx);
+	mlx_hook(mlx.mlx_window, 2, 0, deal_key, &mlx);
 	mlx_loop(mlx.mlx);
 	// ft_free_tab(data.map);
 	// ft_free(&data);

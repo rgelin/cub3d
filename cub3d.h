@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/17 11:39:23 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/17 11:41:59 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include <math.h>
 # include "./minilibx/mlx.h"
 # include "./libft/libft.h"
+
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}				t_pos;
 
 typedef struct s_data
 {
