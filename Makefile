@@ -6,7 +6,7 @@
 #    By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 17:26:54 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/17 13:14:06 by jvander-         ###   ########.fr        #
+#    Updated: 2022/03/17 13:24:52 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS		=	$(SOURCES)main.c \
 				$(SOURCES)parsing.c \
 				$(SOURCES)error.c \
 				$(SOURCES)rayTracking.c \
+				$(SOURCES)rayTracking_utils.c \
 
 SRCS_UTILS	=	$(UTILS)get_pos_player.c \
 
