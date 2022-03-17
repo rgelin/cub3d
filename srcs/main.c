@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/17 12:57:11 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:01:48 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int	main(int ac, char *av[])
 		{
 			int color = 0xf2f2f2;;
 			if (ray.side == 1)
-				color /= 0xCCCCCC;
+				color = 0xCCCCCC;
 			mlx.img.data[y * mlx.img.size_l / 4 + x] = color;
 			y++;
 		}
@@ -164,8 +164,6 @@ int	main(int ac, char *av[])
 		while (y < mlx.screen_heigth)
 		{
  			mlx.img.data[y * mlx.img.size_l / 4 + x] = 0xCC6600;
-			// x,h-y-1,0xcc0000
-			// mlx.img.data[y * (mlx.screen_heigth - 1) / 4 + x] = 0x00FFFF;
 			y++;
 		}
 		y = ray.drawstart;
