@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/17 11:41:59 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/17 12:14:12 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ typedef struct s_pos
 	int	y;
 }				t_pos;
 
+typedef struct s_img
+{
+	void		*img_ptr;
+	int			*data;
+	int			size_l;
+	int			bpp;
+	int			endian;
+}				t_img;
+
 typedef struct s_data
 {
 	char	**map;
@@ -43,6 +52,7 @@ typedef struct s_mlx
 	void	*mlx_window;
 	int		screen_width;
 	int		screen_heigth;
+	t_img	img;
 	t_data	*data;
 }	t_mlx;
 
@@ -52,8 +62,8 @@ typedef struct s_ray
 	double		posy;
 	double		dirx;
 	double		diry;
-	double		planx;
-	double		plany;
+	double		planex;
+	double		planey;
 	double		raydirx;
 	double		raydiry;
 	double		camerax;
@@ -88,5 +98,8 @@ int		count_line_file(char *file_path);
 void	read_file(char *file_path, t_data *data);
 void	get_split_data(char **str);
 void	split_data(t_data *data);
+
+//============UTILS============//
+t_pos	ft_get_pos_player(char **map);
 
 #endif
