@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/17 12:14:12 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:13:52 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ void	split_data(t_data *data);
 
 //============UTILS============//
 t_pos	ft_get_pos_player(char **map);
+void	ft_ray(t_mlx *mlx, t_pos pos_player, t_ray *ray, t_data data);
 
 #endif
