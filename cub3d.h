@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/17 13:24:36 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/17 16:00:51 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	ft_free(t_data *data);
 void	check_map_format(char *str);
 int		check_data(t_data *data);
 void	check_color(char *color);
+int		check_map(t_data *data);
 
 //============PARSING============//
 

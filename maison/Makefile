@@ -6,7 +6,7 @@
 #    By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 17:26:54 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/12 04:50:22 by rgelin           ###   ########.fr        #
+#    Updated: 2022/03/17 16:01:55 by rgelin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,12 @@ MLX_FLAGS	=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
 SRCS		=	$(SOURCES)main.c \
 				$(SOURCES)parsing.c \
-				$(SOURCES)error.c 
+				$(SOURCES)error.c \
+				$(SOURCES)check_map.c \
+				$(SOURCES)rayTracking.c \
+				$(SOURCES)rayTracking_utils.c
 
-SRCS_UTILS	=	
+SRCS_UTILS	=	$(UTILS)get_pos_player.c
 
 #-------------------OBJECTS----------------------
 
