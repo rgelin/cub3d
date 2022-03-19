@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 03:05:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/18 04:40:29 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/19 16:47:40 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,39 +75,4 @@ void	check_color(char *color)
 			ft_perror("Error: operation file corrupted");
 	}
 	ft_free_tab(split_color);
-}
-
-int	check_data(t_data *data)
-{
-	int	i;
-	int	j;
-	
-	if (!data->NO_texture_path || !data->SO_texture_path || !data->WE_texture_path
-		|| ! data->EA_texture_path || !data->floor_color || !data->roof_color)
-		return (1);
-	i = -1;
-	j = -1;
-	while (data->map[ft_tabsize(data->map) - 1][++j])
-	{
-			if ((data->map[0][j] != '1' && data->map[0][j] != ' '))
-				return (1);		
-			if (data->map[ft_tabsize(data->map) - 1][j] != '1'
-				&& data->map[ft_tabsize(data->map) - 1][j] != ' ')
-				return (1);		
-	}
-	while (data->map && data->map[++i])
-	{
-		j = -1;
-		if (data->map[i] && ft_strlen(data->map[i]) == 0)
-			return (1);
-		while (data->map[i][++j])
-		{
-			if (data->map[i][j] != ' ' && data->map[i][j] != '0' && data->map[i][j] != '1' && data->map[i][j] != 'N'
-				&& data->map[i][j] != 'S' && data->map[i][j] != 'W' && data->map[i][j] != 'E')
-				return (1);
-			// if (data->map[i + 1] && (data->map[i][j] == ' ' || data->map[i][j] == '0' && (data->map[i + 1][j] != ' ' && data->map[i + 1][j] != '1')))
-			// 	return (1);
-		}
-	}
-	return (0);
 }
