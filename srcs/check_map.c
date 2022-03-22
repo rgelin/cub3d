@@ -6,13 +6,11 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:56:00 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 15:29:45 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/22 15:30:28 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-//on peut check aussi si on est sur un 0 s'il y a des espaces à coté
 
 int	check_surounded(t_data *data)
 {
