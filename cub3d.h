@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 13:24:36 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:28:57 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,12 @@ t_pos	ft_get_pos_player(char **map);
 int		ft_ray(t_data *data);
 void	ft_draw_wall(t_ray *ray, t_mlx *mlx, int x);
 void	ft_draw_floor_roof(t_ray *ray, t_mlx *mlx, int x);
+
+void	ft_move_down(t_data *data);
+void	ft_move_right(t_data *data);
+void	ft_move_left(t_data *data);
+void	ft_move_up(t_data *data);
+void	ft_rotate_left(t_data *data);
+void	ft_rotate_right(t_data *data);
 
 #endif
