@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:56:00 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/19 16:47:49 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/22 15:22:41 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int	check_surounded(t_data *data)
 		j = -1;
 		while (data->map[i] && data->map[i][++j])
 		{
-			if (data->map[i][j] == ' ')
+			if (data->map[i][j] == '0')
 			{
-				if ((j != 0) && (data->map[i][j - 1] != ' ' && data->map[i][j - 1] != '1'))
+				if (j != 0 && data->map[i][j - 1] == ' ')
 					return (1);
-				if ((j != (int)ft_strlen(data->map[i] - 1)) && (data->map[i][j + 1] != ' ' && data->map[i][j + 1] != '1'))
+				if (j != (int)ft_strlen(data->map[i] - 1) && data->map[i][j + 1] == ' ')
 					return (1);
-				if ((i != 0) &&  (data->map[i - 1][j] != ' ' && data->map[i - 1][j] != '1'))
+				if (i != 0 &&  data->map[i - 1][j] == ' ')
 					return (1);
-				if ((i != ft_tabsize(data->map) - 1) && (data->map[i + 1][j] != ' ' && data->map[i + 1][j] != '1'))
+				if (i != ft_tabsize(data->map) - 1 && data->map[i + 1][j] == ' ')
 					return (1);
 			}
 		}
