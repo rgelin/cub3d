@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/17 16:00:51 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/22 12:48:44 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,6 @@ typedef struct s_img
 	int			endian;
 }				t_img;
 
-typedef struct s_data
-{
-	char	**map;
-	char	*NO_texture_path;
-	char	*SO_texture_path;
-	char	*WE_texture_path;
-	char	*EA_texture_path;
-	char	*floor_color;
-	char	*roof_color;
-}	t_data;
 
 typedef struct s_mlx
 {
@@ -53,7 +43,6 @@ typedef struct s_mlx
 	int		screen_width;
 	int		screen_heigth;
 	t_img	img;
-	t_data	*data;
 }	t_mlx;
 
 typedef struct s_ray
@@ -82,7 +71,22 @@ typedef struct s_ray
 	int			drawstart;
 	int			drawend;
 	int			x;
+	double		movespeed;
+	double		rotspeed;
 }					t_ray;
+
+typedef struct s_data
+{
+	char	**map;
+	char	*NO_texture_path;
+	char	*SO_texture_path;
+	char	*WE_texture_path;
+	char	*EA_texture_path;
+	char	*floor_color;
+	char	*roof_color;
+	t_mlx	*mlx;
+	t_ray	*ray;
+}	t_data;
 
 //============ERRORS============//
 
@@ -102,7 +106,7 @@ void	split_data(t_data *data);
 
 //============UTILS============//
 t_pos	ft_get_pos_player(char **map);
-void	ft_ray(t_mlx *mlx, t_pos pos_player, t_ray *ray, t_data data);
+void	ft_ray(t_data *data);
 void	ft_draw_wall(t_ray *ray, t_mlx *mlx, int x);
 void	ft_draw_floor_roof(t_ray *ray, t_mlx *mlx, int x);
 

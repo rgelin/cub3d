@@ -6,45 +6,45 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:10:34 by jvander-          #+#    #+#             */
-/*   Updated: 2022/03/17 13:26:29 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/22 12:56:24 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	ft_init_ray(t_ray *ray, t_pos pos_player, t_mlx *mlx, int x)
+static void	ft_init_ray(t_ray *ray, t_mlx *mlx, int x)
 {
 	ray->camerax = 1.5 * x / mlx->screen_width - 1;
 	ray->raydirx = ray->dirx + ray->planex * ray->camerax;
 	ray->raydiry = ray->diry + ray->planey * ray->camerax;
-	ray->mapx = pos_player.x;
-	ray->mapy = pos_player.y;
+	ray->mapx = ray->posx;
+	ray->mapy = ray->posy;
 	ray->deltadistx = fabs(1 / ray->raydirx);
 	ray->deltadisty = fabs(1 / ray->raydiry);
 	ray->hit = 0;
 }
 
-static void	ft_calc_initial_side_dist(t_ray *ray, t_pos pos_player)
+static void	ft_calc_initial_side_dist(t_ray *ray)
 {
 	if (ray->raydirx < 0)
 	{
 		ray->stepx = -1;
-		ray->sidedistx = (pos_player.x - ray->mapx) * ray->deltadistx;
+		ray->sidedistx = (ray->posx - ray->mapx) * ray->deltadistx;
 	}
 	else
 	{
 		ray->stepx = 1;
-		ray->sidedistx = (ray->mapx + 1.0 - pos_player.x) * ray->deltadistx;
+		ray->sidedistx = (ray->mapx + 1.0 - ray->posx) * ray->deltadistx;
 	}
 	if (ray->raydiry < 0)
 	{
 		ray->stepy = -1;
-		ray->sidedisty = (pos_player.y - ray->mapy) * ray->deltadisty;
+		ray->sidedisty = (ray->posy - ray->mapy) * ray->deltadisty;
 	}
 	else
 	{
 		ray->stepy = 1;
-		ray->sidedisty = (ray->mapy + 1.0 - pos_player.y) * ray->deltadisty;
+		ray->sidedisty = (ray->mapy + 1.0 - ray->posy) * ray->deltadisty;
 	}
 }
 
@@ -84,18 +84,18 @@ static void	ft_calc_begin_end(t_ray *ray, t_mlx *mlx)
 		ray->drawend = mlx->screen_heigth - 1;
 }
 
-void	ft_ray(t_mlx *mlx, t_pos pos_player, t_ray *ray, t_data data)
+void	ft_ray(t_data *data)
 {
 	int	x;
 
 	x = -1;
-	while (++x < mlx->screen_width)
+	while (++x < data->mlx->screen_width)
 	{
-		ft_init_ray(ray, pos_player, mlx, x);
-		ft_calc_initial_side_dist(ray, pos_player);
-		ft_calc_dist_wall(data, ray);
-		ft_calc_begin_end(ray, mlx);
-		ft_draw_wall(ray, mlx, x);
-		ft_draw_floor_roof(ray, mlx, x);
+		ft_init_ray(data->ray, data->mlx, x);
+		ft_calc_initial_side_dist(data->ray);
+		ft_calc_dist_wall(*data, data->ray);
+		ft_calc_begin_end(data->ray, data->mlx);
+		ft_draw_wall(data->ray, data->mlx, x);
+		ft_draw_floor_roof(data->ray, data->mlx, x);
 	}
 }

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/19 16:33:49 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/22 12:57:00 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	press_red_cross(t_mlx *mlx)
+int	press_red_cross(t_data *data)
 {
-	ft_free(mlx->data);
+	ft_free(data);
 	// system("leaks cub3d");
 	exit(EXIT_SUCCESS);
 }
@@ -29,7 +29,7 @@ void init_struct(t_data *data, t_mlx *mlx)
 	data->floor_color = NULL;
 	data->roof_color = NULL;
 
-	mlx->data = data;
+	data->mlx = mlx;
 	mlx->screen_heigth = 800;
 	mlx->screen_width = 800;
 }
@@ -39,29 +39,55 @@ void init_struct(t_data *data, t_mlx *mlx)
 */
 int		deal_key(int key_code, t_data *data)
 {
-	(void)data;
+	t_pos pos_p;
+
+	pos_p = ft_get_pos_player(data->map);
 	if (key_code == 53)
 		exit(0);
 	if (key_code == 13)
 	{
+		if (data->map[(int)(data->ray->posx + (data->ray->dirx * data->
+					ray->movespeed * 2))][(int)data->ray->posy] != '1')
+			data->ray->posx += data->ray->dirx * data->ray->movespeed;
+		if (data->map[(int)(data->ray->posx)][(int)(data->ray->posy +
+					(data->ray->diry * data->ray->movespeed * 2))] != '1')
+			data->ray->posy += data->ray->diry * data->ray->movespeed;
 		printf("W\n");
-		return (13);
 	}
 	if (key_code == 1)
 	{
+		if (data->map[(int)(data->ray->posx - (data->ray->dirx * data->
+						ray->movespeed * 2))][(int)(data->ray->posy)] != '1')
+			data->ray->posx -= data->ray->dirx * data->ray->movespeed;
+		if (data->map[(int)(data->ray->posx)][(int)(data->ray->posy -
+					(data->ray->diry * data->ray->movespeed * 2))] != '1')
+			data->ray->posy -= data->ray->diry * data->ray->movespeed;
 		printf("S\n");
-		return (1);
 	}
 	if (key_code == 2)
 	{
+		if (data->map[(int)(data->ray->posx + data->ray->diry *
+					(data->ray->movespeed * 2))][(int)data->ray->posy] != '1')
+			data->ray->posx += data->ray->diry * data->ray->movespeed;
+		if (data->map[(int)data->ray->posx][(int)(data->ray->posy -
+					data->ray->dirx *
+					(data->ray->movespeed * 2))] != '1')
+			data->ray->posy -= data->ray->dirx * data->ray->movespeed;
 		printf("D\n");
-		return (2);
 	}
 	if (key_code == 0)
 	{
+		if (data->map[(int)(data->ray->posx - data->ray->diry *
+					(data->ray->movespeed * 2))][(int)data->ray->posy] != '1')
+			data->ray->posx -= data->ray->diry * data->ray->movespeed;
+		if (data->map[(int)data->ray->posx][(int)(data->ray->posy +
+					data->ray->dirx *
+					(data->ray->movespeed * 2))] != '1')
+			data->ray->posy += data->ray->dirx * data->ray->movespeed;
 		printf("A\n");
-		return (0);
 	}
+	ft_ray(data);
+	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_window, data->mlx->img.img_ptr, 0, 0);
 	return (0);
 }
 
@@ -85,16 +111,21 @@ int	main(int ac, char *av[])
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx, mlx.screen_width, mlx.screen_heigth);
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l,
 		&mlx.img.endian);
-		
+	
 	pos_player = ft_get_pos_player(data.map);
 	ray.dirx = -1;
 	ray.diry = 0;
+	ray.posx = pos_player.x;
+	ray.posy = pos_player.y;
 	ray.planex = 0;
 	ray.planey = 0.66;
-	ft_ray(&mlx, pos_player, &ray, data);
+	ray.movespeed = 1;
+	ray.rotspeed = 1;
+	data.ray = &ray;
+	ft_ray(&data);
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, mlx.img.img_ptr, 0, 0);
-	mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &mlx);
-	mlx_hook(mlx.mlx_window, 2, 0, deal_key, &mlx);
+	mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &data);
+	mlx_hook(mlx.mlx_window, 2, 0, deal_key, &data);
 	mlx_loop(mlx.mlx);
 	// ft_free_tab(data.map);
 	// ft_free(&data);
