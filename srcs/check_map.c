@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:56:00 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 16:28:15 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/22 16:48:45 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,9 @@ int	check_surounded(t_data *data)
 	return (0);
 }
 
-int	check_data(t_data *data)
+int	check_up_and_down(t_data *data)
 {
-	int	i;
-	int	j;
-	int	pos;
+	int j;
 	
 	if (!data->NO_texture_path || !data->SO_texture_path || !data->WE_texture_path
 		|| ! data->EA_texture_path || !data->floor_color || !data->roof_color)
@@ -57,8 +55,19 @@ int	check_data(t_data *data)
 				&& data->map[ft_tabsize(data->map) - 1][j] != ' ')
 				return (1);		
 	}
+	return (0);
+}
+
+int	check_data(t_data *data)
+{
+	int	i;
+	int	j;
+	int	pos;
+	
 	i = -1;
 	pos = 0;
+	if (check_up_and_down(data))
+		return (1);
 	while (data->map && data->map[++i])
 	{
 		j = -1;

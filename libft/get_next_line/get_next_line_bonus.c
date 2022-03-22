@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 16:54:47 by rgelin            #+#    #+#             */
-/*   Updated: 2021/08/31 16:26:52 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/22 17:04:26 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static char	*ft_copy_remain(char *str)
 		i++;
 	if (!str[i])
 		return (NULL);
-	remain = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	remain = malloc(sizeof(char) * ((str) - i + 1));
 	if (!remain)
 		return (NULL);
 	i += 1;

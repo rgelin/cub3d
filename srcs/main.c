@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 15:33:53 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/22 17:09:33 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	init_struct(t_data *data, t_mlx *mlx)
 	data->floor_color = NULL;
 	data->roof_color = NULL;
 	data->mlx = mlx;
-	mlx->screen_heigth = 800;
-	mlx->screen_width = 800;
+	mlx->screen_width = 1200;
+	mlx->screen_heigth = 750;
 }
 
 /*

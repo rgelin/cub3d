@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+         #
+#    By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 17:26:54 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/22 15:24:42 by jvander-         ###   ########.fr        #
+#    Updated: 2022/03/22 17:01:22 by rgelin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS		=	$(SOURCES)main.c \
 
 
 SRCS_UTILS	=	$(UTILS)get_pos_player.c \
+				$(UTILS)convert_color.c \
 
 #-------------------OBJECTS----------------------
 

@@ -6,7 +6,7 @@
 #    By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 17:26:54 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/17 16:01:55 by rgelin           ###   ########.fr        #
+#    Updated: 2022/03/22 17:06:04 by rgelin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,12 @@ SRCS		=	$(SOURCES)main.c \
 				$(SOURCES)error.c \
 				$(SOURCES)check_map.c \
 				$(SOURCES)rayTracking.c \
+				$(SOURCES)movments.c \
+				$(SOURCES)movments2.c \
 				$(SOURCES)rayTracking_utils.c
 
-SRCS_UTILS	=	$(UTILS)get_pos_player.c
-
+SRCS_UTILS	=	$(UTILS)get_pos_player.c \
+				$(UTILS)convert_color.c \
 #-------------------OBJECTS----------------------
 
 OBJS		=	$(SRCS:.c=.o)

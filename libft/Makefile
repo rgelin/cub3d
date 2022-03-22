@@ -6,7 +6,7 @@
 #    By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/19 12:26:15 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/12 04:10:34 by rgelin           ###   ########.fr        #
+#    Updated: 2022/03/22 16:56:14 by rgelin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS        =       ft_atoi.c \
 					ft_strrchr.c \
 					ft_strtrim.c \
 					ft_substr.c \
+					ft_swap.c \
 					ft_tolower.c \
 					ft_free_tab.c \
 					ft_tabsize.c \

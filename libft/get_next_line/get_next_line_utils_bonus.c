@@ -6,13 +6,13 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 16:54:51 by rgelin            #+#    #+#             */
-/*   Updated: 2021/08/31 16:26:16 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/22 17:07:07 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+static int	ft_strlen(char *str)
 {
 	int	i;
 

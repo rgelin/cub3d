@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 14:24:50 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/12 04:19:10 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/22 16:55:54 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ t_list			*ft_lstmap(t_list *l, void *(*f)(void *), void (*del)(void *));
 void			ft_free_tab(char **tab);
 int				ft_tabsize(char **tab);
 void			ft_rev_tab(char *tab, int neg);
+void			ft_swap(char *res);
 
 #endif
