@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 12:57:00 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/22 13:30:15 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,14 @@ void init_struct(t_data *data, t_mlx *mlx)
 int		deal_key(int key_code, t_data *data)
 {
 	t_pos pos_p;
+	double	olddirx;
+	double	oldplanex;
 
 	pos_p = ft_get_pos_player(data->map);
 	if (key_code == 53)
 		exit(0);
+		// 123 arrow left
+		// 124 arrow right
 	if (key_code == 13)
 	{
 		if (data->map[(int)(data->ray->posx + (data->ray->dirx * data->
@@ -52,7 +56,6 @@ int		deal_key(int key_code, t_data *data)
 		if (data->map[(int)(data->ray->posx)][(int)(data->ray->posy +
 					(data->ray->diry * data->ray->movespeed * 2))] != '1')
 			data->ray->posy += data->ray->diry * data->ray->movespeed;
-		printf("W\n");
 	}
 	if (key_code == 1)
 	{
@@ -62,7 +65,6 @@ int		deal_key(int key_code, t_data *data)
 		if (data->map[(int)(data->ray->posx)][(int)(data->ray->posy -
 					(data->ray->diry * data->ray->movespeed * 2))] != '1')
 			data->ray->posy -= data->ray->diry * data->ray->movespeed;
-		printf("S\n");
 	}
 	if (key_code == 2)
 	{
@@ -73,7 +75,6 @@ int		deal_key(int key_code, t_data *data)
 					data->ray->dirx *
 					(data->ray->movespeed * 2))] != '1')
 			data->ray->posy -= data->ray->dirx * data->ray->movespeed;
-		printf("D\n");
 	}
 	if (key_code == 0)
 	{
@@ -84,10 +85,35 @@ int		deal_key(int key_code, t_data *data)
 					data->ray->dirx *
 					(data->ray->movespeed * 2))] != '1')
 			data->ray->posy += data->ray->dirx * data->ray->movespeed;
-		printf("A\n");
 	}
-	ft_ray(data);
-	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_window, data->mlx->img.img_ptr, 0, 0);
+	if (key_code == 123)
+	{
+		olddirx = data->ray->dirx;
+		oldplanex = data->ray->planex;
+		data->ray->dirx = data->ray->dirx * cos(data->ray->rotspeed / 2) -
+			data->ray->diry * sin(data->ray->rotspeed / 2);
+		data->ray->diry = olddirx * sin(data->ray->rotspeed / 2) + data->
+			ray->diry * cos(data->ray->rotspeed / 2);
+		data->ray->planex = data->ray->planex * cos(data->ray->rotspeed / 2) -
+			data->ray->planey * sin(data->ray->rotspeed / 2);
+		data->ray->planey = oldplanex * sin(data->ray->rotspeed / 2) +
+			data->ray->planey * cos(data->ray->rotspeed / 2);
+	}
+	if (key_code == 124)
+	{
+		olddirx = data->ray->dirx;
+		oldplanex = data->ray->planex;
+		data->ray->dirx = data->ray->dirx * cos(-data->ray->rotspeed / 2) -
+			data->ray->diry * sin(-data->ray->rotspeed / 2);
+		data->ray->diry = olddirx * sin(-data->ray->rotspeed / 2) +
+			data->ray->diry * cos(-data->ray->rotspeed / 2);
+		data->ray->planex = data->ray->planex * cos(-data->ray->rotspeed / 2)
+			- data->ray->planey * sin(-data->ray->rotspeed / 2);
+		data->ray->planey = oldplanex * sin(-data->ray->rotspeed / 2) +
+			data->ray->planey * cos(-data->ray->rotspeed / 2);
+	}
+	// ft_ray(data);
+	// mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_window, data->mlx->img.img_ptr, 0, 0);
 	return (0);
 }
 
@@ -117,15 +143,16 @@ int	main(int ac, char *av[])
 	ray.diry = 0;
 	ray.posx = pos_player.x;
 	ray.posy = pos_player.y;
-	ray.planex = 0;
+	ray.planex = 0.0;
 	ray.planey = 0.66;
-	ray.movespeed = 1;
-	ray.rotspeed = 1;
+	ray.movespeed = 0.3;
+	ray.rotspeed = 0.4;
 	data.ray = &ray;
 	ft_ray(&data);
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, mlx.img.img_ptr, 0, 0);
 	mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &data);
 	mlx_hook(mlx.mlx_window, 2, 0, deal_key, &data);
+	mlx_loop_hook(mlx.mlx, ft_ray, &data);
 	mlx_loop(mlx.mlx);
 	// ft_free_tab(data.map);
 	// ft_free(&data);

@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 12:48:44 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/22 13:24:36 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	split_data(t_data *data);
 
 //============UTILS============//
 t_pos	ft_get_pos_player(char **map);
-void	ft_ray(t_data *data);
+int		ft_ray(t_data *data);
 void	ft_draw_wall(t_ray *ray, t_mlx *mlx, int x);
 void	ft_draw_floor_roof(t_ray *ray, t_mlx *mlx, int x);
 

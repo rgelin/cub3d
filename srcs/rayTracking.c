@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:10:34 by jvander-          #+#    #+#             */
-/*   Updated: 2022/03/22 12:56:24 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/22 13:26:02 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_init_ray(t_ray *ray, t_mlx *mlx, int x)
 {
-	ray->camerax = 1.5 * x / mlx->screen_width - 1;
+	ray->camerax = 2 * x / (double)mlx->screen_width - 1;
 	ray->raydirx = ray->dirx + ray->planex * ray->camerax;
 	ray->raydiry = ray->diry + ray->planey * ray->camerax;
 	ray->mapx = ray->posx;
@@ -84,7 +84,7 @@ static void	ft_calc_begin_end(t_ray *ray, t_mlx *mlx)
 		ray->drawend = mlx->screen_heigth - 1;
 }
 
-void	ft_ray(t_data *data)
+int	ft_ray(t_data *data)
 {
 	int	x;
 
@@ -98,4 +98,6 @@ void	ft_ray(t_data *data)
 		ft_draw_wall(data->ray, data->mlx, x);
 		ft_draw_floor_roof(data->ray, data->mlx, x);
 	}
+	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_window, data->mlx->img.img_ptr, 0, 0);
+	return (1);
 }
