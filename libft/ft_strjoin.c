@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 14:39:22 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/09 18:12:33 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/23 17:51:25 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = -1;
 	j = -1;
 	if (s1 == 0 || s2 == 0)
-		return (0);
+		return (NULL);
 	res = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!res)
 		return (NULL);
