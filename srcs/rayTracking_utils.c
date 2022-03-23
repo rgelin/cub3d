@@ -6,24 +6,47 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:21:50 by jvander-          #+#    #+#             */
-/*   Updated: 2022/03/17 13:27:25 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:20:02 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_draw_wall(t_ray *ray, t_mlx *mlx, int x)
+void	ft_draw_wall(t_ray *ray, t_mlx *mlx, int x, t_data *data)
 {
 	int	y;
 	int	color;
+	// int	tex_num = data->map[data->ray->mapx][data->ray->mapy] - 1;
+	double	wall_x;
+	
+	if (ray->side == 0)
+		wall_x = ray->posy + ray->perpwalldist * ray->raydiry;
+	else
+		wall_x = ray->posx + ray->perpwalldist * ray->raydirx;
+	wall_x -= floorf((wall_x));
+	int tex_x = (int)(wall_x * (double)data->texture[0].width);
+	if (ray->side == 0 && ray->raydirx > 0)
+		tex_x = data->texture[0].width - tex_x - 1;
+	if (ray->side == 1 && ray->raydiry < 0)
+		tex_x = data->texture[0].width - tex_x - 1;
+	double step = 1.0 * data->texture[0].height / ray->lineheight;
+	double tex_pos = (ray->drawstart - mlx->screen_heigth / 2
+		+ ray->lineheight / 2) * step;
 
 	y = ray->drawstart;
 	while (y < ray->drawend)
 	{
-		color = 0xf2f2f2;
-		if (ray->side == 1)
-			color = 0xCCCCCC;
-		mlx->img.data[y * mlx->img.size_l / 4 + x] = color;
+		int tex_y = (int)tex_pos & (data->texture[0].height - 1);
+		tex_pos += step;
+		if (y < mlx->screen_heigth && x < mlx->screen_width)
+		{
+			mlx->img.data[y * mlx->img.size_l / 4 + x] =
+				data->texture[0].data[tex_y * data->texture[0].size_l / 4 + tex_x];
+		}
+		// color = 0xf2f2f2;
+		// if (ray->side == 1)
+		// 	color = 0xCCCCCC;
+		// mlx->img.data[y * mlx->img.size_l / 4 + x] = color;
 		y++;
 	}
 }
