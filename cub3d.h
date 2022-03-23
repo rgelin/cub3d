@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 15:28:57 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:31:57 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_img
 	int			size_l;
 	int			bpp;
 	int			endian;
+	int			width;
+	int			height;
 }				t_img;
 
 
@@ -84,6 +86,7 @@ typedef struct s_data
 	char	*EA_texture_path;
 	char	*floor_color;
 	char	*roof_color;
+	t_img	texture[4];
 	t_mlx	*mlx;
 	t_ray	*ray;
 }	t_data;
@@ -107,7 +110,7 @@ void	split_data(t_data *data);
 //============UTILS============//
 t_pos	ft_get_pos_player(char **map);
 int		ft_ray(t_data *data);
-void	ft_draw_wall(t_ray *ray, t_mlx *mlx, int x);
+void	ft_draw_wall(t_ray *ray, t_mlx *mlx, int x, t_data *data);
 void	ft_draw_floor_roof(t_ray *ray, t_mlx *mlx, int x);
 
 void	ft_move_down(t_data *data);

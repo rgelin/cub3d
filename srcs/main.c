@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 17:09:33 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/23 17:10:07 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ int	main(int ac, char *av[])
 	ray.planey = 0.66;
 	ray.movespeed = 0.3;
 	ray.rotspeed = 0.4;
+	data.texture[0].img_ptr = mlx_xpm_file_to_image(mlx.mlx,
+		data.NO_texture_path, &data.texture[0].width, &data.texture[0].height);
+	data.texture[0].data = (int *)mlx_get_data_addr(data.texture[0].img_ptr,
+		&data.texture[0].bpp, &data.texture[0].size_l, &data.texture[0].endian);
+	// mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, data.texture[0].img_ptr,
+	// 	data.texture[0].width, data.texture[0].height);
 	data.ray = &ray;
 	ft_ray(&data);
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, mlx.img.img_ptr, 0, 0);

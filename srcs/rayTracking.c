@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:10:34 by jvander-          #+#    #+#             */
-/*   Updated: 2022/03/22 15:32:17 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:32:01 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	ft_ray(t_data *data)
 		ft_calc_initial_side_dist(data->ray);
 		ft_calc_dist_wall(*data, data->ray);
 		ft_calc_begin_end(data->ray, data->mlx);
-		ft_draw_wall(data->ray, data->mlx, x);
+		ft_draw_wall(data->ray, data->mlx, x, data);
 		ft_draw_floor_roof(data->ray, data->mlx, x);
 	}
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_window,

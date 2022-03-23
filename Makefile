@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+         #
+#    By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 17:26:54 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/22 17:01:22 by rgelin           ###   ########.fr        #
+#    Updated: 2022/03/23 16:27:30 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SOURCES		=	./srcs/
 #-------------------COMPILATION----------------------
 
 CC			=	gcc
-FLAGS		=	-Wall -Werror -Wextra
+# FLAGS		=	-Wall -Werror -Wextra
 MLX_FLAGS	=	-lmlx -framework OpenGL -framework AppKit
 
 #-------------------SOURCES FILES----------------------
