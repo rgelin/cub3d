@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 17:09:33 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/23 15:59:58 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ int	deal_key(int key_code, t_data *data)
 		ft_rotate_right(data);
 	return (0);
 }
+
+// void	init_textures(t_data *data, t_mlx *mlx)
+// {
+	
+// }
 
 int	main(int ac, char *av[])
 {
