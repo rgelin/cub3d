@@ -6,11 +6,13 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 17:20:07 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/24 17:57:40 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+// faut check quand on open les textures si le path est valide !!!!!!
 
 int	press_red_cross(t_data *data)
 {
