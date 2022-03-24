@@ -6,7 +6,11 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/03/23 17:39:31 by rgelin           ###   ########.fr       */
+=======
+/*   Updated: 2022/03/24 12:45:39 by jvander-         ###   ########.fr       */
+>>>>>>> c08f2077fbf9f7d7b5c0d945979c7577e713c5f3
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +19,7 @@
 int	press_red_cross(t_data *data)
 {
 	ft_free(data);
-	// system("leaks cub3d");
 	exit(EXIT_SUCCESS);
-}
-
-void	init_struct(t_data *data, t_mlx *mlx)
-{
-	data->NO_texture_path = NULL;
-	data->SO_texture_path = NULL;
-	data->WE_texture_path = NULL;
-	data->EA_texture_path = NULL;
-	data->floor_color = NULL;
-	data->roof_color = NULL;
-	data->mlx = mlx;
-	mlx->screen_width = 1200;
-	mlx->screen_heigth = 750;
 }
 
 /*
@@ -57,57 +47,24 @@ int	deal_key(int key_code, t_data *data)
 	return (0);
 }
 
-// void	init_textures(t_data *data, t_mlx *mlx)
-// {
-	
-// }
-
+/*
+*	ft_free_tab(data.map);
+*	ft_free(&data);
+*	system("leaks cub3d");
+*/
 int	main(int ac, char *av[])
 {
 	t_mlx	mlx;
 	t_data	data;
 	t_ray	ray;
-	t_pos	pos_player;
 
 	if (ac != 2)
 		return (ft_perror("Error: argument"));
 	check_map_format(av[1]);
-	init_struct(&data, &mlx);
-	read_file(av[1], &data);
-	if (check_data(&data))
-		return (ft_perror("Error: operation file corrupted"));
-	split_data(&data);
-	mlx.mlx = mlx_init();
-	mlx.mlx_window = mlx_new_window(mlx.mlx, mlx.screen_width,
-			mlx.screen_heigth, "cub3d");
-	mlx.img.img_ptr = mlx_new_image(mlx.mlx, mlx.screen_width,
-			mlx.screen_heigth);
-	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr,
-			&mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
-	pos_player = ft_get_pos_player(data.map);
-	ray.dirx = -1;
-	ray.diry = 0;
-	ray.posx = pos_player.x;
-	ray.posy = pos_player.y;
-	ray.planex = 0.0;
-	ray.planey = 0.66;
-	ray.movespeed = 0.3;
-	ray.rotspeed = 0.4;
-	data.texture[0].img_ptr = mlx_xpm_file_to_image(mlx.mlx,
-		data.NO_texture_path, &data.texture[0].width, &data.texture[0].height);
-	data.texture[0].data = (int *)mlx_get_data_addr(data.texture[0].img_ptr,
-		&data.texture[0].bpp, &data.texture[0].size_l, &data.texture[0].endian);
-	// mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, data.texture[0].img_ptr,
-	// 	data.texture[0].width, data.texture[0].height);
-	data.ray = &ray;
-	ft_ray(&data);
-	mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, mlx.img.img_ptr, 0, 0);
+	ft_parse_and_init(&data, &mlx, &ray, av[1]);
 	mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &data);
 	mlx_hook(mlx.mlx_window, 2, 0, deal_key, &data);
 	mlx_loop_hook(mlx.mlx, ft_ray, &data);
 	mlx_loop(mlx.mlx);
-	// ft_free_tab(data.map);
-	// ft_free(&data);
-	// system("leaks cub3d");
 	return (0);
 }

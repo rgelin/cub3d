@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 04:39:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/18 04:32:59 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/24 16:03:45 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,4 +137,6 @@ void split_data(t_data *data)
 	get_split_data(&data->floor_color);
 	check_color(data->roof_color);
 	check_color(data->floor_color);
+	data->hex_floor_color = convert_color(data->floor_color);
+	data->hex_roof_color = convert_color(data->roof_color);
 }

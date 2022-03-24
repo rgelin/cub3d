@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:56:00 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 16:48:45 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/24 16:26:32 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	check_data(t_data *data)
 	int	i;
 	int	j;
 	int	pos;
+	char *trim;
 	
 	i = -1;
 	pos = 0;
@@ -71,11 +72,18 @@ int	check_data(t_data *data)
 	while (data->map && data->map[++i])
 	{
 		j = -1;
-		if (data->map[i] && ft_strlen(data->map[i]) == 0)
+		if (data->map[i])
+			trim = ft_strtrim(data->map[i], " ");
+		if (data->map[i] && ft_strlen(trim) == 0)
+		{
+			free(trim);
 			return (1);
+		}
+		free(trim);
 		while (data->map[i][++j])
 		{
-			if (data->map[i][j] == 'N' || data->map[i][j] == 'S' || data->map[i][j] == 'W' || data->map[i][j] == 'E')
+			if (data->map[i][j] == 'N' || data->map[i][j] == 'S'
+				|| data->map[i][j] == 'W' || data->map[i][j] == 'E')
 				pos++;
 			if (data->map[i][j] != ' ' && data->map[i][j] != '0' && data->map[i][j] != '1' && data->map[i][j] != 'N'
 				&& data->map[i][j] != 'S' && data->map[i][j] != 'W' && data->map[i][j] != 'E')

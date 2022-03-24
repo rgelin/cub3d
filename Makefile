@@ -6,7 +6,7 @@
 #    By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/08 17:26:54 by rgelin            #+#    #+#              #
-#    Updated: 2022/03/23 16:27:30 by jvander-         ###   ########.fr        #
+#    Updated: 2022/03/24 12:41:13 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SOURCES		=	./srcs/
 #-------------------COMPILATION----------------------
 
 CC			=	gcc
-# FLAGS		=	-Wall -Werror -Wextra
+FLAGS		=	-Wall -Werror -Wextra
 MLX_FLAGS	=	-lmlx -framework OpenGL -framework AppKit
 
 #-------------------SOURCES FILES----------------------
@@ -33,6 +33,7 @@ SRCS		=	$(SOURCES)main.c \
 				$(SOURCES)check_map.c \
 				$(SOURCES)movments.c \
 				$(SOURCES)movments2.c \
+				$(SOURCES)ft_init.c \
 
 
 SRCS_UTILS	=	$(UTILS)get_pos_player.c \
