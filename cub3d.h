@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 12:41:03 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/24 12:56:44 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,4 +136,5 @@ void	ft_rotate_right(t_data *data);
 
 //============INIT============//
 void	ft_parse_and_init(t_data *data, t_mlx *mlx, t_ray *ray, char *file);
+void	ft_determine_start_orientation(t_data *data, t_ray *ray);
 #endif
