@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 11:30:46 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/24 12:41:03 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int		ft_ray(t_data *data);
 void	ft_draw_wall(t_ray *ray, t_mlx *mlx, int x, t_data *data);
 void	ft_draw_floor_roof(t_ray *ray, t_mlx *mlx, int x);
 
+//============MOVEMENTS============//
 void	ft_move_down(t_data *data);
 void	ft_move_right(t_data *data);
 void	ft_move_left(t_data *data);
@@ -133,4 +134,6 @@ void	ft_move_up(t_data *data);
 void	ft_rotate_left(t_data *data);
 void	ft_rotate_right(t_data *data);
 
+//============INIT============//
+void	ft_parse_and_init(t_data *data, t_mlx *mlx, t_ray *ray, char *file);
 #endif
