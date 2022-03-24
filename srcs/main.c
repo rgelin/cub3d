@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 10:59:47 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/24 12:05:47 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,20 +80,35 @@ int	main(int ac, char *av[])
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr,
 			&mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
 	pos_player = ft_get_pos_player(data.map);
-	ray.dirx = -1;
-	ray.diry = 0;
+	ray.dirx = -1; // 1 pour S - 1 pour N 0 sinon
+	ray.diry = 0; // -1 pour W, 1 pour E 0 sinon
 	ray.posx = pos_player.x;
 	ray.posy = pos_player.y;
-	ray.planex = 0.0;
-	ray.planey = 0.66;
+	ray.planex = 0.0; // -0.66 pour W 0.66 E 0 sinon
+	ray.planey = 0.66; // -0.66 pour S 0.66 N 0 sinon
 	ray.movespeed = 0.3;
 	ray.rotspeed = 0.4;
-	data.texture[0].img_ptr = mlx_xpm_file_to_image(mlx.mlx,
-		data.NO_texture_path, &data.texture[0].width, &data.texture[0].height);
-	data.texture[0].data = (int *)mlx_get_data_addr(data.texture[0].img_ptr,
-		&data.texture[0].bpp, &data.texture[0].size_l, &data.texture[0].endian);
-	// mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, data.texture[0].img_ptr,
-	// 	data.texture[0].width, data.texture[0].height);
+	data.texture[NORTH].img_ptr = mlx_xpm_file_to_image(mlx.mlx,
+		data.NO_texture_path, &data.texture[NORTH].width,
+		&data.texture[NORTH].height);
+	data.texture[NORTH].data = (int *)mlx_get_data_addr(data.texture[NORTH].img_ptr,
+		&data.texture[NORTH].bpp, &data.texture[NORTH].size_l, &data.texture[NORTH].endian);
+	data.texture[SOUTH].img_ptr = mlx_xpm_file_to_image(mlx.mlx,
+		data.SO_texture_path, &data.texture[SOUTH].width,
+		&data.texture[SOUTH].height);
+	data.texture[SOUTH].data = (int *)mlx_get_data_addr(data.texture[SOUTH].img_ptr,
+		&data.texture[SOUTH].bpp, &data.texture[SOUTH].size_l, &data.texture[SOUTH].endian);
+	data.texture[EAST].img_ptr = mlx_xpm_file_to_image(mlx.mlx,
+		data.EA_texture_path, &data.texture[EAST].width,
+		&data.texture[EAST].height);
+	data.texture[EAST].data = (int *)mlx_get_data_addr(data.texture[EAST].img_ptr,
+		&data.texture[EAST].bpp, &data.texture[EAST].size_l, &data.texture[EAST].endian);
+	data.texture[WEST].img_ptr = mlx_xpm_file_to_image(mlx.mlx,
+		data.WE_texture_path, &data.texture[WEST].width,
+		&data.texture[WEST].height);
+	data.texture[WEST].data = (int *)mlx_get_data_addr(data.texture[WEST].img_ptr,
+		&data.texture[WEST].bpp, &data.texture[WEST].size_l, &data.texture[WEST].endian);
+	
 	data.ray = &ray;
 	ft_ray(&data);
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_window, mlx.img.img_ptr, 0, 0);
