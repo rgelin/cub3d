@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/23 15:31:57 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/24 10:59:27 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_img
 	int			height;
 }				t_img;
 
-
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -46,6 +45,16 @@ typedef struct s_mlx
 	int		screen_heigth;
 	t_img	img;
 }	t_mlx;
+
+typedef struct s_tex
+{
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	double	step;
+	double	tex_pos;
+	int		tex_num;
+}				t_tex;
 
 typedef struct s_ray
 {
