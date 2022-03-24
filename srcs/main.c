@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 16:45:49 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/24 17:20:07 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,33 @@ int	deal_key(int key_code, t_data *data)
 	return (0);
 }
 
+void	read_file(char *file_path, t_data *data)
+{
+	int		fd;
+	int		i;
+	char	**file_content;
+	char	*line;
+
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+		ft_perror("Error: open file");
+	file_content = malloc(sizeof(char *) * (count_line_file(file_path) + 1));
+	data->map = malloc(sizeof(char *) * (count_line_file(file_path)));
+	if (!file_content || !data->map)
+		ft_perror("Error: malloc");
+	i = 0;
+	while (i < count_line_file(file_path))
+	{
+		line = get_next_line(fd);
+		file_content[i] = ft_strdup(line);
+		i++;
+		free(line);
+	}
+	file_content[i] = NULL;
+	parse_data(data, file_content);
+	ft_free_tab(file_content);
+	close(fd);
+}
 /*
 *	ft_free_tab(data.map);
 *	ft_free(&data);

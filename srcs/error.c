@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 03:05:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/19 16:47:40 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/24 17:12:01 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@ int	ft_perror(char *msg)
 	write(2, "\n", 1);
 	// system("leaks cub3d");
 	exit(EXIT_FAILURE);
+}
+
+int	check_if_all_info(t_data *data)
+{
+	if (data->EA_texture_path && data->NO_texture_path && data->SO_texture_path
+		&& data->WE_texture_path && data->floor_color && data->roof_color)
+		return (1);
+	else
+		return (0);
 }
 
 void	ft_free(t_data *data)
@@ -33,7 +42,7 @@ void	ft_free(t_data *data)
 
 void	check_map_format(char *str)
 {
-	int 	i;
+	int		i;
 	int		j;
 	char	*to_check;
 

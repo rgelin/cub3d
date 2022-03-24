@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 16:44:52 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/24 17:20:57 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int		count_line_file(char *file_path);
 void	read_file(char *file_path, t_data *data);
 void	get_split_data(char **str);
 void	split_data(t_data *data);
+int		check_if_all_info(t_data *data);
+void	parse_data(t_data *data, char **file_content);
 
 //============UTILS============//
 t_pos	ft_get_pos_player(char **map);

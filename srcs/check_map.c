@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:56:00 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 16:26:32 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:59:37 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_surounded(t_data *data)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = -1;
@@ -27,11 +27,13 @@ int	check_surounded(t_data *data)
 			{
 				if (j != 0 && data->map[i][j - 1] == ' ')
 					return (1);
-				if (j != (int)ft_strlen(data->map[i] - 1) && data->map[i][j + 1] == ' ')
+				if (j != (int)ft_strlen(data->map[i] - 1)
+					&& data->map[i][j + 1] == ' ')
 					return (1);
-				if (i != 0 &&  data->map[i - 1][j] == ' ')
+				if (i != 0 && data->map[i - 1][j] == ' ')
 					return (1);
-				if (i != ft_tabsize(data->map) - 1 && data->map[i + 1][j] == ' ')
+				if (i != ft_tabsize(data->map) - 1
+					&& data->map[i + 1][j] == ' ')
 					return (1);
 			}
 		}
@@ -41,30 +43,55 @@ int	check_surounded(t_data *data)
 
 int	check_up_and_down(t_data *data)
 {
-	int j;
-	
-	if (!data->NO_texture_path || !data->SO_texture_path || !data->WE_texture_path
-		|| ! data->EA_texture_path || !data->floor_color || !data->roof_color)
+	int	j;
+
+	if (!data->NO_texture_path || !data->SO_texture_path
+		|| !data->WE_texture_path || ! data->EA_texture_path
+		|| !data->floor_color || !data->roof_color)
 		return (1);
 	j = -1;
 	while (data->map && data->map[ft_tabsize(data->map) - 1][++j])
 	{
-			if ((data->map[0][j] != '1' && data->map[0][j] != ' '))
-				return (1);		
-			if (data->map[ft_tabsize(data->map) - 1][j] != '1'
-				&& data->map[ft_tabsize(data->map) - 1][j] != ' ')
-				return (1);		
+		if ((data->map[0][j] != '1' && data->map[0][j] != ' '))
+			return (1);
+		if (data->map[ft_tabsize(data->map) - 1][j] != '1'
+			&& data->map[ft_tabsize(data->map) - 1][j] != ' ')
+			return (1);
 	}
+	return (0);
+}
+
+int	check_empty_line(t_data *data, int i)
+{
+	char	*trim;
+
+	if (data->map[i])
+		trim = ft_strtrim(data->map[i], " ");
+	if (data->map[i] && ft_strlen(trim) == 0)
+	{
+		free(trim);
+		return (1);
+	}
+	free(trim);
+	return (0);
+}
+
+int	check_contains_valid_char(t_data *data, int i, int j)
+{
+	if (data->map[i][j] != ' ' && data->map[i][j] != '0'
+		&& data->map[i][j] != '1' && data->map[i][j] != 'N'
+		&& data->map[i][j] != 'S' && data->map[i][j] != 'W'
+		&& data->map[i][j] != 'E')
+		return (1);
 	return (0);
 }
 
 int	check_data(t_data *data)
 {
-	int	i;
-	int	j;
-	int	pos;
-	char *trim;
-	
+	int		i;
+	int		j;
+	int		pos;
+
 	i = -1;
 	pos = 0;
 	if (check_up_and_down(data))
@@ -72,21 +99,14 @@ int	check_data(t_data *data)
 	while (data->map && data->map[++i])
 	{
 		j = -1;
-		if (data->map[i])
-			trim = ft_strtrim(data->map[i], " ");
-		if (data->map[i] && ft_strlen(trim) == 0)
-		{
-			free(trim);
+		if (check_empty_line(data, i))
 			return (1);
-		}
-		free(trim);
 		while (data->map[i][++j])
 		{
 			if (data->map[i][j] == 'N' || data->map[i][j] == 'S'
 				|| data->map[i][j] == 'W' || data->map[i][j] == 'E')
 				pos++;
-			if (data->map[i][j] != ' ' && data->map[i][j] != '0' && data->map[i][j] != '1' && data->map[i][j] != 'N'
-				&& data->map[i][j] != 'S' && data->map[i][j] != 'W' && data->map[i][j] != 'E')
+			if (check_contains_valid_char(data, i, j))
 				return (1);
 		}
 	}
