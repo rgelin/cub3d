@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:56:00 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 16:48:45 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/24 16:21:11 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	check_data(t_data *data)
 			return (1);
 		while (data->map[i][++j])
 		{
-			if (data->map[i][j] == 'N' || data->map[i][j] == 'S' || data->map[i][j] == 'W' || data->map[i][j] == 'E')
+			if (data->map[i][j] == 'N' || data->map[i][j] == 'S'
+				|| data->map[i][j] == 'W' || data->map[i][j] == 'E')
 				pos++;
 			if (data->map[i][j] != ' ' && data->map[i][j] != '0' && data->map[i][j] != '1' && data->map[i][j] != 'N'
 				&& data->map[i][j] != 'S' && data->map[i][j] != 'W' && data->map[i][j] != 'E')

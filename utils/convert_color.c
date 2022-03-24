@@ -3,57 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   convert_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:54:40 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/22 17:02:39 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/24 16:11:10 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	count_nbr(int nb)
+long	convert_color(char *color)
 {
-	int	count;
-
-	count = 0;
-	if (nb == 0)
-		count = 1;
-	if (nb < 0)
-	{
-		nb = -nb;
-		count++;
-	}
-	while (nb > 0)
-	{
-		nb /= 10;
-		count++;
-	}
-	return (count);
-}
-
-char	*convert_color(char *color_number)
-{
-	char	*base;
-	char	*res;
-	int		i;
-	int		nbr;
-
-	i = 0;
-	nbr = ft_atoi(color_number);
-	res = malloc(sizeof(char) * count_nbr(nbr) + 1);
-	if (!res)
-		return (NULL);
-	if (nbr == 0)
-		res[i++] = '0';
-	base = "0123456789abcdef";
-	while (nbr > 0)
-	{
-		res[i] = base[(nbr % 16)];
-		nbr /= 16;
-		i++;
-	}
-	res[i] = '\0';
-	ft_swap(res);
-	return (res);
+	int		r;
+	int		g;
+	int		b;
+	char	**split;
+	
+	split = ft_split(color, ',');
+	r = ft_atoi(split[0]);
+	g = ft_atoi(split[1]);
+	b = ft_atoi(split[2]);
+	ft_free_tab(split);
+	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }

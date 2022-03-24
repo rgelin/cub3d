@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:21:50 by jvander-          #+#    #+#             */
-/*   Updated: 2022/03/24 12:12:40 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:05:22 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_draw_wall(t_ray *ray, t_mlx *mlx, int x, t_data *data)
 	}
 }
 
-void	ft_draw_floor_roof(t_ray *ray, t_mlx *mlx, int x)
+void	ft_draw_floor_roof(t_ray *ray, t_mlx *mlx, int x, t_data *data)
 {
 	int	y;
 
@@ -79,13 +79,13 @@ void	ft_draw_floor_roof(t_ray *ray, t_mlx *mlx, int x)
 	y = ray->drawend;
 	while (y < mlx->screen_heigth)
 	{
-		mlx->img.data[y * mlx->img.size_l / 4 + x] = 0xCC6600;
+		mlx->img.data[y * mlx->img.size_l / 4 + x] = data->hex_floor_color;
 		y++;
 	}
 	y = ray->drawstart;
 	while (y >= 0)
 	{
-		mlx->img.data[y * mlx->img.size_l / 4 + x] = 0x00FFFF;
+		mlx->img.data[y * mlx->img.size_l / 4 + x] = data->hex_roof_color;
 		y--;
 	}
 }
