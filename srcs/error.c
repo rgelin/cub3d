@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 03:05:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 15:36:40 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 17:03:39 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,16 @@ void	ft_free(t_data *data)
 	if (data->floor_color)
 		free(data->floor_color);
 	ft_free_tab(data->map);
-	if (data->mlx)
-		mlx_destroy_image(data->mlx->mlx, data->mlx->img.img_ptr);
 	i = -1;
 	while (++i < 4)
 	{
-		if (data->mlx->mlx && data->texture[i].img_ptr)
+		if (data->mlx->mlx && data->texture[i].data)
 			mlx_destroy_image(data->mlx->mlx, data->texture[i].img_ptr);
 	}
-	mlx_destroy_window(data->mlx->mlx, data->mlx->mlx_window);
+	if (data->mlx->img.img_ptr)
+		mlx_destroy_image(data->mlx->mlx, data->mlx->img.img_ptr);
+	if (data->mlx->mlx && data->mlx->mlx_window)
+		mlx_destroy_window(data->mlx->mlx, data->mlx->mlx_window);
 }
 
 int	ft_perror(char *msg, t_data *data)

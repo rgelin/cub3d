@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 15:36:40 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 16:39:15 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define SOUTH 1
 # define EAST 2
 # define WEST 3
+# define NB_TEXTURES 4
 
 typedef struct s_pos
 {

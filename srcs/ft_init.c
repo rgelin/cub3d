@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:30:15 by jvander-          #+#    #+#             */
-/*   Updated: 2022/03/29 15:36:40 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 17:05:11 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ static void	init_struct(t_data *data, t_mlx *mlx)
 	data->mlx = mlx;
 	mlx->screen_width = 1200;
 	mlx->screen_heigth = 750;
+	data->texture[0].data = 0;
+	data->texture[1].data = 0;
+	data->texture[2].data = 0;
+	data->texture[3].data = 0;
+	data->mlx->mlx = NULL;
+	// data->texture = malloc(sizeof(t_img) * NB_TEXTURES);
+	// if (!data->texture)
+	// 	ft_perror("Error: malloc", data);
 }
 
 /*
@@ -78,7 +86,7 @@ void	ft_parse_and_init(t_data *data, t_mlx *mlx, t_ray *ray, char *file)
 	init_struct(data, mlx);
 	read_file(file, data);
 	if (check_data(data))
-		exit (ft_perror("Error: operation file corrupted", data));
+		ft_perror("Error: operation file corrupted", data);
 	split_data(data);
 	ft_init_text_window(data, mlx);
 	ft_init_raytrack(ray, data);
