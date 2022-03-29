@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 04:39:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 17:20:48 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 11:55:50 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	parse_data(t_data *data, char **file_content)
 	while (file_content[i] && ft_strlen(file_content[i]) == 0)
 		i++;
 	while (file_content[i])
-		data->map[j++] = ft_strdup(file_content[i++]);
+		data->map[j++] = ft_strdup(file_content[i++]); //A proteger Segfault si NULL
 	data->map[j] = NULL;
 }
 
