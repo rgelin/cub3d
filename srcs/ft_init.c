@@ -6,13 +6,13 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:30:15 by jvander-          #+#    #+#             */
-/*   Updated: 2022/03/29 17:05:11 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 17:33:01 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	init_struct(t_data *data, t_mlx *mlx)
+void	init_struct(t_data *data, t_mlx *mlx)
 {
 	data->no_texture_path = NULL;
 	data->so_texture_path = NULL;
@@ -28,9 +28,6 @@ static void	init_struct(t_data *data, t_mlx *mlx)
 	data->texture[2].data = 0;
 	data->texture[3].data = 0;
 	data->mlx->mlx = NULL;
-	// data->texture = malloc(sizeof(t_img) * NB_TEXTURES);
-	// if (!data->texture)
-	// 	ft_perror("Error: malloc", data);
 }
 
 /*
@@ -83,7 +80,6 @@ static void	ft_init_text_window(t_data *data, t_mlx *mlx)
 
 void	ft_parse_and_init(t_data *data, t_mlx *mlx, t_ray *ray, char *file)
 {
-	init_struct(data, mlx);
 	read_file(file, data);
 	if (check_data(data))
 		ft_perror("Error: operation file corrupted", data);

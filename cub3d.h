@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 16:39:15 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 17:24:38 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int		check_map(t_data *data);
 
 //============PARSING============//
 
+void	init_struct(t_data *data, t_mlx *mlx);
 int		count_line_file(char *file_path, t_data *data);
 void	read_file(char *file_path, t_data *data);
 void	get_split_data(char **str, t_data *data);

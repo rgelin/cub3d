@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 15:51:50 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 17:28:22 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 int	press_red_cross(t_data *data)
 {
 	ft_free(data);
-	// system("leaks cub3d");
 	exit(EXIT_SUCCESS);
 }
 
@@ -32,8 +31,7 @@ int	deal_key(int key_code, t_data *data)
 	if (key_code == 53)
 	{
 		ft_free(data);
-		// system("leaks cub3d");
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 	if (key_code == 13)
 		ft_move_up(data);
@@ -60,7 +58,8 @@ void	read_file(char *file_path, t_data *data)
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		ft_perror("Error: open file", data);
-	file_content = malloc(sizeof(char *) * (count_line_file(file_path, data) + 1));
+	file_content = malloc(sizeof(char *)
+			* (count_line_file(file_path, data) + 1));
 	data->map = malloc(sizeof(char *) * (count_line_file(file_path, data)));
 	if (!file_content || !data->map)
 		ft_perror("Error: malloc", data);
@@ -91,6 +90,7 @@ int	main(int ac, char *av[])
 
 	if (ac != 2)
 		ft_perror("Error: argument", &data);
+	init_struct(&data, &mlx);
 	check_map_format(av[1], &data);
 	ft_parse_and_init(&data, &mlx, &ray, av[1]);
 	mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &data);
