@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 03:05:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 17:12:01 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 11:37:47 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_perror(char *msg)
 {
 	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
-	// system("leaks cub3d");
 	exit(EXIT_FAILURE);
 }
 
@@ -31,6 +30,8 @@ int	check_if_all_info(t_data *data)
 
 void	ft_free(t_data *data)
 {
+	int	i;
+
 	free(data->NO_texture_path);
 	free(data->SO_texture_path);
 	free(data->WE_texture_path);
@@ -38,6 +39,12 @@ void	ft_free(t_data *data)
 	free(data->roof_color);
 	free(data->floor_color);
 	ft_free_tab(data->map);
+	if (data->mlx)
+		mlx_destroy_image(data->mlx->mlx, data->mlx->img.img_ptr);
+	i = -1;
+	while (++i < 4)
+		mlx_destroy_image(data->mlx->mlx, data->texture[i].img_ptr);
+	mlx_destroy_window(data->mlx->mlx, data->mlx->mlx_window);
 }
 
 void	check_map_format(char *str)

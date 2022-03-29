@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:30:15 by jvander-          #+#    #+#             */
-/*   Updated: 2022/03/24 16:01:25 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:15:24 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static void	ft_create_img(t_mlx *mlx, t_data *data, int text, char *path)
 {
 	data->texture[text].img_ptr = mlx_xpm_file_to_image(mlx->mlx,
 			path, &data->texture[text].width, &data->texture[text].height);
+	if (!data->texture[text].img_ptr)
+		ft_perror("Error XPM file to image");
 	data->texture[text].data
 		= (int *)mlx_get_data_addr(data->texture[text].img_ptr,
 			&data->texture[text].bpp,
@@ -57,6 +59,8 @@ static void	ft_create_img(t_mlx *mlx, t_data *data, int text, char *path)
 static void	ft_init_text_window(t_data *data, t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
+	if (!mlx->mlx)
+		ft_perror("Error MLX init");
 	mlx->mlx_window = mlx_new_window(mlx->mlx, mlx->screen_width,
 			mlx->screen_heigth, "cub3d");
 	mlx->img.img_ptr = mlx_new_image(mlx->mlx, mlx->screen_width,

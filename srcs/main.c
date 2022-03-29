@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 17:57:40 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 11:34:32 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 int	press_red_cross(t_data *data)
 {
 	ft_free(data);
+	system("leaks cub3d");
 	exit(EXIT_SUCCESS);
 }
 
@@ -29,7 +30,11 @@ int	deal_key(int key_code, t_data *data)
 
 	pos_p = ft_get_pos_player(data->map);
 	if (key_code == 53)
+	{
+		ft_free(data);
+		system("leaks cub3d");
 		exit(0);
+	}
 	if (key_code == 13)
 		ft_move_up(data);
 	if (key_code == 1)
@@ -77,6 +82,7 @@ void	read_file(char *file_path, t_data *data)
 *	ft_free(&data);
 *	system("leaks cub3d");
 */
+
 int	main(int ac, char *av[])
 {
 	t_mlx	mlx;
