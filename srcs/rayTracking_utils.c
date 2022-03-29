@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rayTracking_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 13:21:50 by jvander-          #+#    #+#             */
-/*   Updated: 2022/03/24 16:05:22 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:46:20 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ void	ft_draw_floor_roof(t_ray *ray, t_mlx *mlx, int x, t_data *data)
 	if (ray->drawend < 0)
 		ray->drawend = mlx->screen_heigth;
 	y = ray->drawend;
-	while (y < mlx->screen_heigth)
+	while (y < mlx->screen_heigth - 1)
 	{
 		mlx->img.data[y * mlx->img.size_l / 4 + x] = data->hex_floor_color;
 		y++;
 	}
-	y = ray->drawstart;
+	y = ray->drawstart - 1;
 	while (y >= 0)
 	{
 		mlx->img.data[y * mlx->img.size_l / 4 + x] = data->hex_roof_color;

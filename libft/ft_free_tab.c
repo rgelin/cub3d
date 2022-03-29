@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 21:49:24 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 12:01:41 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:22:46 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_free_tab(char **tab)
 	int	i;
 
 	i = -1;
-	while (tab[++i])
+	while (tab && tab[++i])
 	{
 		free(tab[i]);
 		tab[i] = NULL;

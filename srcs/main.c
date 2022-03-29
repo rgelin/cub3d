@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 11:34:32 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:45:01 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	press_red_cross(t_data *data)
 {
 	ft_free(data);
-	system("leaks cub3d");
+	// system("leaks cub3d");
 	exit(EXIT_SUCCESS);
 }
 
@@ -32,7 +32,7 @@ int	deal_key(int key_code, t_data *data)
 	if (key_code == 53)
 	{
 		ft_free(data);
-		system("leaks cub3d");
+		// system("leaks cub3d");
 		exit(0);
 	}
 	if (key_code == 13)
@@ -59,13 +59,13 @@ void	read_file(char *file_path, t_data *data)
 
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
-		ft_perror("Error: open file");
-	file_content = malloc(sizeof(char *) * (count_line_file(file_path) + 1));
-	data->map = malloc(sizeof(char *) * (count_line_file(file_path)));
+		ft_perror("Error: open file", data);
+	file_content = malloc(sizeof(char *) * (count_line_file(file_path, data) + 1));
+	data->map = malloc(sizeof(char *) * (count_line_file(file_path, data)));
 	if (!file_content || !data->map)
-		ft_perror("Error: malloc");
+		ft_perror("Error: malloc", data);
 	i = 0;
-	while (i < count_line_file(file_path))
+	while (i < count_line_file(file_path, data))
 	{
 		line = get_next_line(fd);
 		file_content[i] = ft_strdup(line);
@@ -80,7 +80,7 @@ void	read_file(char *file_path, t_data *data)
 /*
 *	ft_free_tab(data.map);
 *	ft_free(&data);
-*	system("leaks cub3d");
+*	"leaks cub3d");
 */
 
 int	main(int ac, char *av[])
@@ -90,8 +90,8 @@ int	main(int ac, char *av[])
 	t_ray	ray;
 
 	if (ac != 2)
-		return (ft_perror("Error: argument"));
-	check_map_format(av[1]);
+		ft_perror("Error: argument", &data);
+	check_map_format(av[1], &data);
 	ft_parse_and_init(&data, &mlx, &ray, av[1]);
 	mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &data);
 	mlx_hook(mlx.mlx_window, 2, 0, deal_key, &data);

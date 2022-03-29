@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:56:00 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 16:59:37 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 15:36:40 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	check_up_and_down(t_data *data)
 {
 	int	j;
 
-	if (!data->NO_texture_path || !data->SO_texture_path
-		|| !data->WE_texture_path || ! data->EA_texture_path
+	if (!data->no_texture_path || !data->so_texture_path
+		|| !data->we_texture_path || ! data->ea_texture_path
 		|| !data->floor_color || !data->roof_color)
 		return (1);
 	j = -1;

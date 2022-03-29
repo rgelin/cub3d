@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/24 17:20:57 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 15:36:40 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,10 @@ typedef struct s_ray
 typedef struct s_data
 {
 	char	**map;
-	char	*NO_texture_path;
-	char	*SO_texture_path;
-	char	*WE_texture_path;
-	char	*EA_texture_path;
+	char	*no_texture_path;
+	char	*so_texture_path;
+	char	*we_texture_path;
+	char	*ea_texture_path;
 	char	*floor_color;
 	char	*roof_color;
 	int		hex_floor_color;
@@ -108,18 +108,18 @@ typedef struct s_data
 
 //============ERRORS============//
 
-int		ft_perror(char *msg);
+int		ft_perror(char *msg, t_data *data);
 void	ft_free(t_data *data);
-void	check_map_format(char *str);
+void	check_map_format(char *str, t_data *data);
 int		check_data(t_data *data);
-void	check_color(char *color);
+void	check_color(char *color, t_data *data);
 int		check_map(t_data *data);
 
 //============PARSING============//
 
-int		count_line_file(char *file_path);
+int		count_line_file(char *file_path, t_data *data);
 void	read_file(char *file_path, t_data *data);
-void	get_split_data(char **str);
+void	get_split_data(char **str, t_data *data);
 void	split_data(t_data *data);
 int		check_if_all_info(t_data *data);
 void	parse_data(t_data *data, char **file_content);
