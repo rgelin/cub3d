@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 15:20:02 by rgelin            #+#    #+#             */
-/*   Updated: 2020/12/08 12:35:54 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 12:07:23 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char *a;
-	unsigned char *b;
+	unsigned char	*a;
+	unsigned char	*b;
 
 	a = (unsigned char *)dst;
 	b = (unsigned char *)src;

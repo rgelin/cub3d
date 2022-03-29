@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tabsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 04:08:48 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/12 04:10:04 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 12:02:41 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_tabsize(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])

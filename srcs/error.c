@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 03:05:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 11:55:43 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:09:12 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_free(t_data *data)
 	i = -1;
 	while (++i < 4)
 	{
-		if (data->mlx->mlx && data->texture && data->texture[i].img_ptr)
+		if (data->mlx->mlx && data->texture[i].img_ptr)
 			mlx_destroy_image(data->mlx->mlx, data->texture[i].img_ptr);
 	}
 	mlx_destroy_window(data->mlx->mlx, data->mlx->mlx_window);

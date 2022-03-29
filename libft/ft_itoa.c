@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 15:54:07 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/10 03:27:01 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 12:08:47 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_rev_tab(char *tab, int neg)
+void	ft_rev_tab(char *tab, int neg)
 {
 	int		i;
 	char	t;
@@ -29,9 +29,9 @@ void		ft_rev_tab(char *tab, int neg)
 	}
 }
 
-static int		size_nb(int nb)
+static int	size_nb(int nb)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (nb == 0)
@@ -49,7 +49,7 @@ static int		size_nb(int nb)
 	return (count);
 }
 
-static char		*ft_putnbr_str(int nb, char *res)
+static char	*ft_putnbr_str(int nb, char *res)
 {
 	int		i;
 	long	n;
@@ -75,11 +75,12 @@ static char		*ft_putnbr_str(int nb, char *res)
 	return (res);
 }
 
-char			*ft_itoa(int nb)
+char	*ft_itoa(int nb)
 {
 	char	*res;
 
-	if (!(res = malloc(sizeof(char) * size_nb(nb) + 1)))
+	res = malloc(sizeof(char) * size_nb(nb) + 1);
+	if (!res)
 		return (NULL);
 	res = ft_putnbr_str(nb, res);
 	if (nb < 0)

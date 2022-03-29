@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 21:27:01 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/09 18:15:18 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/29 12:07:00 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		count_words(char const *str, char c)
+static int	count_words(char const *str, char c)
 {
-	int i;
-	int nb_words;
+	int	i;
+	int	nb_words;
 
 	i = 1;
 	nb_words = 0;
@@ -34,9 +34,9 @@ static int		count_words(char const *str, char c)
 	return (nb_words);
 }
 
-static char		**malloc_error(char **str)
+static char	**malloc_error(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -48,9 +48,9 @@ static char		**malloc_error(char **str)
 	return (NULL);
 }
 
-static int		size_word(char const *str, char c, int i)
+static int	size_word(char const *str, char c, int i)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (str[i] == c && str[i] != '\0')
@@ -65,11 +65,11 @@ static int		size_word(char const *str, char c, int i)
 	return (count);
 }
 
-static char		**fill_tab(char const *str, char c, char **res, int nb_words)
+static char	**fill_tab(char const *str, char c, char **res, int nb_words)
 {
-	int		i;
-	int		index;
-	int		j;
+	int	i;
+	int	index;
+	int	j;
 
 	i = 0;
 	index = 0;
@@ -90,7 +90,7 @@ static char		**fill_tab(char const *str, char c, char **res, int nb_words)
 	return (res);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**res;
 	int		nb_words;

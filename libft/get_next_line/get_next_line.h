@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 16:54:44 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 11:25:39 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:02:15 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <limits.h>
 # include <unistd.h>
 
-#define BUFFER_SIZE 1
+# define BUFFER_SIZE 1
 
 char	*get_next_line(int fd);
 int		ft_strlen_gnl(char *str);
