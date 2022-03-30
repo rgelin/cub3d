@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/30 15:24:47 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/30 15:54:13 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	press_red_cross(t_data *data)
 {
 	ft_free(data);
+	system("leaks cub3d");
 	exit(EXIT_SUCCESS);
 }
 
@@ -26,6 +27,7 @@ int	deal_key(int key_code, t_data *data)
 	if (key_code == 53)
 	{
 		ft_free(data);
+		system("leaks cub3d");
 		exit(EXIT_SUCCESS);
 	}
 	if (key_code == 13)
@@ -78,9 +80,9 @@ int	main(int ac, char *av[])
 	t_data	data;
 	t_ray	ray;
 
+	init_struct(&data, &mlx);
 	if (ac != 2)
 		ft_perror("Error: argument", &data);
-	init_struct(&data, &mlx);
 	check_map_format(av[1], &data);
 	ft_parse_and_init(&data, &mlx, &ray, av[1]);
 	mlx_hook(mlx.mlx_window, 17, 1L << 5, press_red_cross, &data);

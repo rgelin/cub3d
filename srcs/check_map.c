@@ -6,13 +6,13 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:56:00 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/30 15:23:15 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/30 15:57:44 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	check_surounded(t_data *data)
+static int	check_surounded(t_data *data)
 {
 	int		i;
 	int		j;
@@ -41,7 +41,7 @@ int	check_surounded(t_data *data)
 	return (0);
 }
 
-int	check_up_and_down(t_data *data)
+static int	check_up_and_down(t_data *data)
 {
 	int	j;
 
@@ -61,7 +61,7 @@ int	check_up_and_down(t_data *data)
 	return (0);
 }
 
-int	check_empty_line(t_data *data, int i)
+static int	check_empty_line(t_data *data, int i)
 {
 	char	*trim;
 
@@ -82,7 +82,10 @@ int	check_contains_valid_char(t_data *data, int i, int j)
 
 	trim = ft_strtrim(data->map[i], " ");
 	if (trim[0] != '1' || trim[ft_strlen(trim) - 1] != '1')
+	{
+		free(trim);
 		return (1);
+	}
 	free(trim);
 	trim = NULL;
 	if (data->map[i][j] != ' ' && data->map[i][j] != '0'
