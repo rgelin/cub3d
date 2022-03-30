@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/30 15:54:13 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/30 16:08:33 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	press_red_cross(t_data *data)
 {
 	ft_free(data);
-	system("leaks cub3d");
 	exit(EXIT_SUCCESS);
 }
 
@@ -27,7 +26,6 @@ int	deal_key(int key_code, t_data *data)
 	if (key_code == 53)
 	{
 		ft_free(data);
-		system("leaks cub3d");
 		exit(EXIT_SUCCESS);
 	}
 	if (key_code == 13)
