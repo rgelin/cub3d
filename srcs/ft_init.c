@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:30:15 by jvander-          #+#    #+#             */
-/*   Updated: 2022/03/29 17:33:01 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/30 15:29:42 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static void	ft_init_raytrack(t_ray *ray, t_data *data)
 	t_pos	pos_player;
 
 	pos_player = ft_get_pos_player(data->map);
-	ray->posx = pos_player.x;
-	ray->posy = pos_player.y;
+	ray->posx = pos_player.x + 0.5;
+	ray->posy = pos_player.y + 0.5;
 	ft_determine_start_orientation(data, ray);
-	ray->movespeed = 0.3;
+	ray->movespeed = 0.4;
 	ray->rotspeed = 0.4;
 	data->ray = ray;
 }

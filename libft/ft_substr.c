@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 13:18:03 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 12:03:21 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:17:58 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		res[i] = str[start + i];
 		i++;
 	}
-	res[i] = 0;
+	res[i] = '\0';
 	return (res);
 }

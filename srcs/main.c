@@ -6,13 +6,11 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:17:09 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 17:28:22 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/30 15:24:47 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-// faut check quand on open les textures si le path est valide !!!!!!
 
 int	press_red_cross(t_data *data)
 {
@@ -20,9 +18,6 @@ int	press_red_cross(t_data *data)
 	exit(EXIT_SUCCESS);
 }
 
-/*
-* W = 13, S = 1, D = 2, A = 0, ARROW LEFT = 123, ARROW RIGHT = 124
-*/
 int	deal_key(int key_code, t_data *data)
 {
 	t_pos	pos_p;
@@ -76,11 +71,6 @@ void	read_file(char *file_path, t_data *data)
 	ft_free_tab(file_content);
 	close(fd);
 }
-/*
-*	ft_free_tab(data.map);
-*	ft_free(&data);
-*	"leaks cub3d");
-*/
 
 int	main(int ac, char *av[])
 {

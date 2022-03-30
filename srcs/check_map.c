@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:56:00 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 16:04:43 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/30 15:23:15 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_surounded(t_data *data)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = -1;
 	while (data->map && data->map[++i])
@@ -78,6 +78,13 @@ int	check_empty_line(t_data *data, int i)
 
 int	check_contains_valid_char(t_data *data, int i, int j)
 {
+	char	*trim;
+
+	trim = ft_strtrim(data->map[i], " ");
+	if (trim[0] != '1' || trim[ft_strlen(trim) - 1] != '1')
+		return (1);
+	free(trim);
+	trim = NULL;
 	if (data->map[i][j] != ' ' && data->map[i][j] != '0'
 		&& data->map[i][j] != '1' && data->map[i][j] != 'N'
 		&& data->map[i][j] != 'S' && data->map[i][j] != 'W'
