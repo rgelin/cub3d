@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:30:35 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/30 15:59:28 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/31 16:06:47 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	parse_data(t_data *data, char **file_content);
 //============UTILS============//
 
 t_pos	ft_get_pos_player(char **map);
-long	convert_color(char *color_number);
+long	convert_color(char *color_number, t_data *data);
 
 //============RENDER============//
 

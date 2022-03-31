@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   convert_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvander- <jvander-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:54:40 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 12:00:33 by jvander-         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:07:25 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-long	convert_color(char *color)
+long	convert_color(char *color, t_data *data)
 {
 	int		r;
 	int		g;
@@ -20,6 +20,8 @@ long	convert_color(char *color)
 	char	**split;
 
 	split = ft_split(color, ',');
+	if (!split)
+		ft_perror("Error: malloc", data);
 	r = ft_atoi(split[0]);
 	g = ft_atoi(split[1]);
 	b = ft_atoi(split[2]);

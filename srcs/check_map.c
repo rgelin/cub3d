@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:56:00 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/30 15:57:44 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/31 15:59:46 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	check_data(t_data *data)
 
 	i = -1;
 	pos = 0;
-	if (check_up_and_down(data))
+	if (ft_tabsize(data->map) == 0 || check_up_and_down(data))
 		return (1);
 	while (data->map && data->map[++i])
 	{

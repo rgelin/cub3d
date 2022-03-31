@@ -6,7 +6,7 @@
 /*   By: rgelin <rgelin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 04:39:56 by rgelin            #+#    #+#             */
-/*   Updated: 2022/03/29 17:31:59 by rgelin           ###   ########.fr       */
+/*   Updated: 2022/03/31 16:06:28 by rgelin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,6 @@ void	split_data(t_data *data)
 	get_split_data(&data->floor_color, data);
 	check_color(data->roof_color, data);
 	check_color(data->floor_color, data);
-	data->hex_floor_color = convert_color(data->floor_color);
-	data->hex_roof_color = convert_color(data->roof_color);
+	data->hex_floor_color = convert_color(data->floor_color, data);
+	data->hex_roof_color = convert_color(data->roof_color, data);
 }
